@@ -1,0 +1,7 @@
+.input{
+    padding: .5rem .75rem;
+    outline: none;
+}
+.input.medium{
+    max-width: 10rem; 
+}

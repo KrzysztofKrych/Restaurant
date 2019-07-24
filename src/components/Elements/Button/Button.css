@@ -1,0 +1,17 @@
+.button{
+    color: #ddd;
+    background-color: #1cb841;
+    outline: none;
+    border-radius: 2px;
+    border: 1px solid #1cb841;
+    padding: .5rem .75rem;
+    cursor: pointer;
+    transition: .5s;
+}
+.button:hover{
+    background-color: #0ba730;
+}
+
+.button.responsive{
+    width: 100%;
+}

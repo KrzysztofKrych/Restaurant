@@ -1,0 +1,19 @@
+.left-panel-menu{
+    height: 100vh;
+    width: 220px;
+    list-style-type: none;
+    background-color: #fdfefe;
+    border-right: 5px solid #ddd;
+    margin: 0;
+    padding: 0;
+}
+
+.left-panel-menu li {
+    color: #969c9e;
+    padding: 1rem;
+    cursor: pointer;
+}
+.left-panel-menu li:hover{
+    color: #858b8d;
+    background-color: #eceded;
+}
