@@ -5,12 +5,14 @@ export interface Props {
     onClick?: (event: React.MouseEvent) => void
     children: ReactNode
     variant?: string
+    disabled?: boolean
 }
 
-const Button = ({onClick, children, variant}: Props) => (
+const Button = ({onClick, children, variant, disabled}: Props) => (
     <button 
-    className={`button ${variant}`} 
-    onClick={onClick}>
+    className={`button ${variant} ${disabled ? "disabled" : ""}`} 
+    onClick={onClick}
+    disabled={disabled}>
     {children}</button>
 )
 

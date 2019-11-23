@@ -1,0 +1,28 @@
+.dishes-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.dishes-container .switcher{
+    display: flex;
+    align-self: flex-start;
+}
+
+.dishes-container .switcher > * {
+    margin-left: 1rem;
+}
+
+.dishes-container .dish{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 1rem;
+}
+.dish-actions{
+    display: flex;
+}
+.dish-actions > *{
+    margin-left: 1rem;
+}

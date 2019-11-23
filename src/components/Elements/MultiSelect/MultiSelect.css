@@ -1,0 +1,24 @@
+.multiselect-container{
+    position: relative;
+}
+
+.multiselect-container .multiselect{
+    position: absolute;
+    background: #fff;
+    z-index: 2;
+    width: 100%;
+}
+.multiselect-container .option{
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem;
+    border: 1px solid #bbb;
+    cursor: pointer;
+}
+.multiselect-container .option.checked{
+    background: #28A745;
+    color: white;
+}
+.multiselect-container .option:not(:last-child){
+    border-bottom: none;
+}

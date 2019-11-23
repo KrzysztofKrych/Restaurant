@@ -1,17 +1,28 @@
 .button{
     color: #ddd;
-    background-color: #1cb841;
+    background-color: #28A745;
     outline: none;
     border-radius: 2px;
-    border: 1px solid #1cb841;
+    border: 1px solid #28A745;
     padding: .5rem .75rem;
     cursor: pointer;
     transition: .5s;
 }
 .button:hover{
-    background-color: #0ba730;
+    background-color: #179620;
+}
+.button.danger{
+    background-color: #DC3545;
+    border: 1px solid #DC3545;
+}
+.button.danger:hover{
+    background-color: #c03340;
 }
 
 .button.responsive{
     width: 100%;
+}
+.button.disabled{
+    opacity: .5;
+    pointer-events: none;
 }

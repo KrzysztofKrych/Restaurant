@@ -1,0 +1,29 @@
+.ingredients-container{
+    display: flex;
+    flex-direction: column;
+}
+.ingredient{
+    display: flex;
+    align-items: center;
+}
+.ingredient > * {
+    margin-left: .5rem;
+}
+.ingredient .name {
+    width: 10em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ingredient img{
+    width: 100px;
+    height: 100px;
+}
+.switcher-container{
+    display: flex;
+    justify-content: flex-end;
+}
+.switcher-container > *{
+    margin-left: 1rem;
+}

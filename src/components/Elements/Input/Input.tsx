@@ -9,15 +9,25 @@ export interface Props {
     className?: string
     placeholder?: string
     size?: string 
+    type?: string
+    accept? :string
+    disabled?: boolean
+    name?:string
+    checked?:boolean
 }
 
-const Input = ({onChange, value, style, className, placeholder, size}:Props) => (
+const Input = ({onChange, value, style, className, placeholder, size, type = "text", accept, disabled, checked}:Props) => (
     <input 
     className={`${className} input ${size}`}
     onChange={onChange} 
     value={value}
     style={style}
-    placeholder={placeholder} />
+    placeholder={placeholder}
+    type={type}
+    disabled={disabled}
+    accept={accept}
+    checked={checked}
+     />
 )
 
 export default Input;

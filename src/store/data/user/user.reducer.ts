@@ -20,7 +20,6 @@ const userReducer: Redux.Reducer<UserState, UserAction> = (state = initialUserSt
     if(ActionType){
         switch(action.type){
             case ActionType.USER_LOGIN_SUCCESS_ACTION: {
-                console.log(action.payload);
                 return {
                     ...state,
                     auth: true

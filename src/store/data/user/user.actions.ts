@@ -1,5 +1,4 @@
 import Redux from "redux"
-import { BASE_URI } from "../../index"
 import Auth from "../../../api/models/Auth";
 import { store } from "../../index";
 

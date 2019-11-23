@@ -14,7 +14,10 @@ const Menu = ({onClick}: Props) => {
     return (
         <ul className="left-panel-menu">
             <li onClick={() => handleClick("newOrder")}>New Order</li>
-            <li onClick={() => handleClick("menu")}>Menu</li>
+            <li onClick={() => handleClick("ordersList")}>Orders</li>
+            <li onClick={() => handleClick("ingredientsList")}>Ingredients</li>
+            <li onClick={() => handleClick("dishesList")}>Dishes</li>
+            <li onClick={() => handleClick("history")}>History</li>
         </ul>
     )
 }
