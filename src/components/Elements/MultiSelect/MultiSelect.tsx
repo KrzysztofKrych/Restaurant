@@ -15,6 +15,7 @@ export interface Props {
 
 const MultiSelect = ({options, text, onChange}: Props) => {
     const { ref, isComponentVisible, setIsComponentVisible } = useClickAwayListener(false);
+    const [search, setSearch] = useState("");
 
     const handleOpenSelect = () => {
         setIsComponentVisible(!isComponentVisible);
@@ -24,17 +25,31 @@ const MultiSelect = ({options, text, onChange}: Props) => {
         onChange(id, containerId);
     }
 
+    const createOption = (option: Option, index: number) => 
+        <div key={index} 
+            className={`option ${option.checked ? 'checked' : ''}`} 
+            onClick={() => handleClick(option.id, option.containerId || -1)}>
+            <div>{option.name}</div>
+        </div> 
+    
+        
+
     return (
         <div className="multiselect-container" ref={ref}>
             <Button onClick={handleOpenSelect}>{text}</Button>
             <div className="multiselect">
-            {isComponentVisible && options.map((option:Option, index: number) => 
-                <div key={index} 
-                    className={`option ${option.checked ? 'checked' : ''}`} 
-                    onClick={() => handleClick(option.id, option.containerId || -1)}>
-                    <div>{option.name}</div>
-                </div>    
-            )}
+            {isComponentVisible && 
+            <Fragment>
+                <div className="option input">
+                    <Input 
+                        type="text" 
+                        placeholder="type to search..." 
+                        onChange={(event) => setSearch(event.target.value)}/>
+                </div>
+                {options.map((option:Option, index: number) => 
+                    option.name.includes(search) && createOption(option, index)
+                )}
+            </Fragment>}
             </div>
         </div>
     )

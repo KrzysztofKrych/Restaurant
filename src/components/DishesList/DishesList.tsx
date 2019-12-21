@@ -27,7 +27,7 @@ const DishesList = ({dishes, ingredients}: Props) => {
     }
     
     const handleMultiselectChange = (id: number, containerId: number) => {
-        const ingredient = ingredients.find( ingredient => ingredient.id === id)
+        const ingredient = ingredients.find(ingredient => ingredient.id === id)
         if(ingredient){
             addIngredientToDishActionSuccess(containerId, ingredient);
         }
@@ -46,7 +46,14 @@ const DishesList = ({dishes, ingredients}: Props) => {
             {dishes.length > 0 ?
                 dishes.map((dish: Dish, index: number) => 
                     <div key={index} className="dish">
-                        <span>{index + 1}. {dish.name}</span>
+                        <div className="information-container">
+                            <span>{index + 1}. {dish.name}</span>
+                            <div className="ingredients-container-in-dishes">
+                                {dish.ingredients.map(ingredient => 
+                                    <div>{ingredient.name}</div>
+                                )}
+                            </div>
+                        </div>
                         <div className="dish-actions">
                             <MultiSelect 
                                 options={getOptionsFromIngredients(dish)} 

@@ -10,7 +10,7 @@ export interface IngredientsState {
 }
 
 export const initialIngredientsState: IngredientsState = {
-    ingredients: [{name: "1232", id: Date.now()}]
+    ingredients: [{name: "12323", id: Date.now() + 1},{name: "12325", id: Date.now()},{name: "12323", id: Date.now() + 2},{name: "1232", id: Date.now()+3},{name: "12ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss32", id: Date.now()+5},{name: "12sssssssssssssssssssssssssssssssssssssssssssssss12312sssssssssssssssssssssssssss32", id: Date.now()+8}]
 }
 
 export type IngredientsAction = AddIngredientSuccessAction;

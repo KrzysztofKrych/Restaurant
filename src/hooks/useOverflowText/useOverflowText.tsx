@@ -1,4 +1,4 @@
-import React, { useEffect, useState, CSSProperties } from "react";
+import { useEffect, useState, CSSProperties } from "react";
 
 
 const useOverflowText = (overflow: number) => {
@@ -16,10 +16,12 @@ const useOverflowText = (overflow: number) => {
         transform: 'translate(0%,-50%)',
         maxWidth: '100%'
     }
+
+
     useEffect(() => {
         if(overflow > -1) setStyle(overflowStyles);
         else setStyle({});
-    }, [overflow] );
+    }, [overflow]);
     return style;
 }
 

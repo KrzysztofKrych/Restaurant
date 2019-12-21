@@ -15,6 +15,22 @@
     border: 1px solid #bbb;
     cursor: pointer;
 }
+
+.option input{
+    border: none;
+    padding: .5rem 0;
+}
+
+.multiselect{
+    max-height: 25rem;
+    overflow: auto;
+}
+
+.multiselect-container .option > *{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 .multiselect-container .option.checked{
     background: #28A745;
     color: white;

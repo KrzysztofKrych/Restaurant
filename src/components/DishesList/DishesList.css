@@ -22,7 +22,23 @@
 }
 .dish-actions{
     display: flex;
+    min-width: 15rem;
 }
 .dish-actions > *{
     margin-left: 1rem;
+}
+
+.dishes-container .dish .information-container{
+    display: flex;
+    align-items: center;
+}
+
+.dishes-container .dish .information-container .ingredients-container-in-dishes{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+.dishes-container .dish .information-container .ingredients-container-in-dishes > *{
+    border-right: 2px solid #bbb;
+    padding: 0 1rem;
 }
