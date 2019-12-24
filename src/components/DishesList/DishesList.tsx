@@ -47,7 +47,7 @@ const DishesList = ({dishes, ingredients}: Props) => {
                 dishes.map((dish: Dish, index: number) => 
                     <div key={index} className="dish">
                         <div className="information-container">
-                            <span>{index + 1}. {dish.name}</span>
+                            <span className="dish-name">{index + 1}. {dish.name}</span>
                             <div className="ingredients-container-in-dishes">
                                 {dish.ingredients.map(ingredient => 
                                     <div>{ingredient.name}</div>

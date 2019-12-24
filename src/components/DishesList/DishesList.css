@@ -22,10 +22,16 @@
 }
 .dish-actions{
     display: flex;
-    min-width: 15rem;
+    min-width: 16rem;
+    align-self: flex-start;
 }
 .dish-actions > *{
     margin-left: 1rem;
+}
+
+.dishes-container .dish .information-container .dish-name{
+    min-width: 7rem;
+    align-self: flex-start;
 }
 
 .dishes-container .dish .information-container{
