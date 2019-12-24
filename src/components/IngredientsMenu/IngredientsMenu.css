@@ -5,6 +5,7 @@
 .ingredient{
     display: flex;
     align-items: center;
+    margin: .5rem 0;
 }
 .ingredient > * {
     margin-left: .5rem;

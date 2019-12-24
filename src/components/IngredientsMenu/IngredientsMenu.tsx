@@ -1,4 +1,4 @@
-import React, { Fragment, useState, SyntheticEvent } from 'react';
+import React, { useState } from 'react';
 import Ingredient from '../../api/models/Ingredient';
 import { RootState } from '../../store/rootReducer';
 import { connect } from 'react-redux';
@@ -6,9 +6,12 @@ import "./IngredientsMenu.css";
 import Switcher from '../Elements/Switcher/Switcher';
 import IngredientCreator from '../IngredientCreator/IngredientCreator';
 import useOverflowText from '../../hooks/useOverflowText/useOverflowText';
+import Input from '../Elements/Input/Input';
+import { getBase64 } from '../../helpers/helpers';
+import { addAvatarToIngredientActionSuccess } from '../../store/data/ingredients/ingredients.middleware';
 
 export interface Props {
-    ingredients: Ingredient[]
+    ingredients: Ingredient[];
 }
 
 const IngredientsMenu = ({ingredients}: Props) => {
@@ -28,6 +31,15 @@ const IngredientsMenu = ({ingredients}: Props) => {
             setOverflow(index)
         }
     }
+
+    const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>, id:number) => {
+        const file = event.target.files;
+        if (file) {
+            getBase64(file[0]).then(data => 
+                addAvatarToIngredientActionSuccess(data as string, id)
+            );
+        }
+    }
     
     return (
         <div>
@@ -42,6 +54,7 @@ const IngredientsMenu = ({ingredients}: Props) => {
                 {ingredients.length ? ingredients.map((ingredient, index) => 
                 <div key={index} className="ingredient">
                     <div className="name">
+                        {index + 1}. 
                         <span 
                             onMouseLeave={() => setOverflow(-1)}
                             onMouseEnter={(event) => isOverflowing(event, index)} 
@@ -51,6 +64,7 @@ const IngredientsMenu = ({ingredients}: Props) => {
                         </span>
                     </div>
                     {ingredient.avatar && <img src={ingredient.avatar} alt="image" />}
+                    {!ingredient.avatar && <Input type="file" accept="image/png,image/jpeg,image/jpg" onChange={(event) => handleFileUpload(event, ingredient.id)} />}
                 </div>
                 ) : 
                 <div>Your ingredients list is empty! Go to 'New ingredient' section to add your first ingredient.</div>
