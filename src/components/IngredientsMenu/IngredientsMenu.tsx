@@ -40,6 +40,8 @@ const IngredientsMenu = ({ingredients}: Props) => {
             );
         }
     }
+
+    const getInputClass = (value: string | undefined) => value ? 'change' : "";
     
     return (
         <div>
@@ -64,7 +66,11 @@ const IngredientsMenu = ({ingredients}: Props) => {
                         </span>
                     </div>
                     {ingredient.avatar && <img src={ingredient.avatar} alt="image" />}
-                    {!ingredient.avatar && <Input type="file" accept="image/png,image/jpeg,image/jpg" onChange={(event) => handleFileUpload(event, ingredient.id)} />}
+                    <Input 
+                        type="file" 
+                        accept="image/png,image/jpeg,image/jpg" 
+                        className={getInputClass(ingredient.avatar)}
+                        onChange={(event) => handleFileUpload(event, ingredient.id)} />
                 </div>
                 ) : 
                 <div>Your ingredients list is empty! Go to 'New ingredient' section to add your first ingredient.</div>
