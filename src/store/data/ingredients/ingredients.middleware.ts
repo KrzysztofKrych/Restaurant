@@ -7,3 +7,6 @@ export const addIngredientActionSuccess = (ingredient: Ingredient, successCallba
     store.dispatch({ type: ActionType.ADD_INGREDIENT_SUCCESS_ACTION, payload: { ingredient } })
     successCallback();
 }
+export const addAvatarToIngredientActionSuccess = (avatar: string, id:number) => {
+    store.dispatch({ type: ActionType.ADD_AVATAR_TO_INGREDIENT_SUCCESS_ACTION, payload: { avatar,id } })
+}
