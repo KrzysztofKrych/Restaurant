@@ -4,6 +4,7 @@ import "./Input.css";
 
 export interface Props {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+    onBlur?: (event: React.ChangeEvent<HTMLInputElement>) => void
     value?: string | number
     style?: CSSProperties
     className?: string
@@ -14,9 +15,10 @@ export interface Props {
     disabled?: boolean
     name?:string
     checked?:boolean
+    autoFocus?: boolean
 }
 
-const Input = ({onChange, value, style, className, placeholder, size, type = "text", accept, disabled, checked}:Props) => (
+const Input = ({onChange,onBlur, value, style, className, placeholder, size, type = "text", accept, disabled, checked, autoFocus}:Props) => (
     <input 
     className={`${className} input ${size}`}
     onChange={onChange} 
@@ -27,6 +29,8 @@ const Input = ({onChange, value, style, className, placeholder, size, type = "te
     disabled={disabled}
     accept={accept}
     checked={checked}
+    onBlur={onBlur}
+    autoFocus={autoFocus}
      />
 )
 
