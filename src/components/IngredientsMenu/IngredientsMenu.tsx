@@ -68,7 +68,7 @@ const IngredientsMenu = ({ingredients}: Props) => {
                         accept="image/png,image/jpeg,image/jpg" 
                         className={getInputClass(ingredient.avatar)}
                         onChange={(event) => handleFileUpload(event, ingredient.id)} />
-                        <Button onClick={() => handleDeleteIngredient(ingredient.id)}>Remove</Button>
+                        <Button variant="danger" onClick={() => handleDeleteIngredient(ingredient.id)}>Remove</Button>
                 </div>
                 ) : 
                 <div>Your ingredients list is empty! Go to 'New ingredient' section to add your first ingredient.</div>
