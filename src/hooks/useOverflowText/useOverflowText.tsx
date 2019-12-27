@@ -13,7 +13,6 @@ const useOverflowText = (overflow: number) => {
         overflow: 'hidden',
         whiteSpace: 'nowrap',
         textOverflow: 'ellipsis',
-        transform: 'translate(0%,-50%)',
         maxWidth: '100%'
     }
 

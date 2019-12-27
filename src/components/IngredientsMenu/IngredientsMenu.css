@@ -7,6 +7,9 @@
     align-items: center;
     margin: .5rem 0;
 }
+.ingredient:hover{
+    background-color: #ddd;
+}
 .ingredient > * {
     margin-left: .5rem;
 }
