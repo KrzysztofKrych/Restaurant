@@ -21,7 +21,7 @@ const OrderCreator = ({dishes, orders}: Props) => {
     const [tempOrder, setTempOrder] = useState<Dish[]>([]);
     const [tableNumber, setTableNumber] = useState<number>(0);
 
-    const isTableBusy = (tableNumber: number) => orders.some(order => order.table === tableNumber && order.status !== OrderStatus.PAID);
+    const isTableBusy = (tableNumber: number) => orders.some(order => order.table === tableNumber && order.status !== OrderStatus.PAID &&  order.status !== OrderStatus.ARCHIVED);
 
     const getDishes = () => dishes.filter(dish => dish.name.includes(searchValue));
 
@@ -85,7 +85,8 @@ const OrderCreator = ({dishes, orders}: Props) => {
                     <Input 
                         type='number'
                         value={tableNumber || ''}
-                        onChange={(event) => setTableNumber(Number(event.target.value)) } />
+                        onChange={(event) => setTableNumber(Number(event.target.value)) }
+                        placeholder="type number of table" />
                     <Button onClick={onSaveOrder} disabled={!tableNumber || isTableBusy(tableNumber)}>Save</Button>
                     {isTableBusy(tableNumber) && <span>This table is already busy!</span>}
                 </div>

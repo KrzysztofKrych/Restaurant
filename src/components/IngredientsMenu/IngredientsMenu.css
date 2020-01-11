@@ -50,6 +50,9 @@ input[type="file"]::before{
     text-shadow: 1px 1px #fff;
     font-weight: 700;
 }
+input[type="file"].change{
+    width: 9rem;
+}
 input[type="file"].change::before{
     content: 'Change avatar';
 }

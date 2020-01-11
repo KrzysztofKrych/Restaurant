@@ -1,0 +1,25 @@
+.archived-order{
+    display: flex;
+    text-align: center;
+}
+.archived-order.head{
+    margin: 2rem 0 3rem 0;
+}
+.archived-order.head .table-number{
+    text-align: left;
+}
+.archived-order .table-number{
+    margin-right: .5rem;
+    min-width: 7rem;
+}
+.archived-order .archived-order-dish-container{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin-bottom: 1rem
+}
+
+.archived-order .archived-order-dish-container > *{
+    border-right: 2px solid #bbb;
+    padding: 0 1rem;
+}

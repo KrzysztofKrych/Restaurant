@@ -7,6 +7,7 @@ import ActionType, {
     ChangeOrderStatusSuccessAction
 } from "./orders.actions"
 import Order from "../../../api/models/Order";
+import OrderStatus from "../../../api/models/OrderStatus";
 
 export interface OrdersState {
     orders: Order[]
