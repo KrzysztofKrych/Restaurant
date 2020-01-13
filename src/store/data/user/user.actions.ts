@@ -1,6 +1,7 @@
 import Redux from "redux"
 import Auth from "../../../api/models/Auth";
 import { store } from "../../index";
+import fire from "../../../config/firebaseConfig";
 
 
 enum ActionType {
@@ -15,21 +16,7 @@ export class UserLoginInitAction implements Redux.Action {
 }
 export class UserLoginSuccessAction implements Redux.Action {
     public type = ActionType.USER_LOGIN_SUCCESS_ACTION;
-    public payload: { userAuth: Auth }
-
-    constructor(userAuth: Auth){
-        this.payload = { userAuth }
-    }
 }
 
-export const loginAction = (userAuth: Auth) => {
-    store.dispatch({type: ActionType.USER_LOGIN_SUCCESS_ACTION, payload: { userAuth } });
-
-    // fetch(`${BASE_URI}/kkrych/webresources`, {method:'GET'})
-    // .then(response => response.json())
-    // .then(data => {
-    //     console.log(data);
-    // })
-}
 
 export default ActionType;

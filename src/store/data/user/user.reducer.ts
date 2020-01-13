@@ -1,7 +1,6 @@
 import Redux from "redux";
 
 import ActionType, {
-    UserLoginInitAction,
     UserLoginSuccessAction
 } from "./user.actions"
 

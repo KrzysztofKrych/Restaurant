@@ -4,7 +4,7 @@ import Input from "../Elements/Input/Input";
 import FlexDiv from "../Elements/FlexDiv/FlexDiv";
 import Button from "../Elements/Button/Button";
 import Auth from "../../api/models/Auth";
-import  { loginAction } from "../../store/data/user/user.actions"; 
+import  { loginActionInit } from "../../store/data/user/user.middleware"; 
 
 import "./Login.css";
 
@@ -15,7 +15,7 @@ const Login = () => {
     })
 
     const handleLogin = () => {
-        loginAction(auth);
+        loginActionInit(auth);
     }
 
     const handleAuth = (setter: (auth: Auth) => void) => {
@@ -37,7 +37,6 @@ const Login = () => {
                 onChange={(event: ChangeEvent<HTMLInputElement>) => handleAuth(auth => auth.password = event.target.value)}  
                 size="medium" 
                 placeholder="password" />
-                
                 <Button variant="responsive" onClick={handleLogin}>Login</Button>
             </FlexDiv>
         </div>
