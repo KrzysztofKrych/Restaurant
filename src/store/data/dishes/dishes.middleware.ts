@@ -5,7 +5,7 @@ import Dish from "../../../api/models/Dish";
 import Ingredient from "../../../api/models/Ingredient";
 
 export const addDishActionSuccess = (dish: Dish) => {
-    store.dispatch({ type: ActionType.ADD_DISH_SUCCESS_ACTION, payload: { dish } })
+    store.dispatch({ type: ActionType.ADD_DISH_SUCCESS_ACTION, payload: { dish } });
 }
 
 export const removeDishActionSuccess = (dish: Dish) => {

@@ -1,5 +1,5 @@
 
-import { store, BASE_URI } from "../../index";
+import { store } from "../../index";
 import ActionType from "./ingredients.actions";
 import Ingredient from "../../../api/models/Ingredient";
 

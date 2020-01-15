@@ -9,6 +9,7 @@ import { RootState } from './store/rootReducer';
 import { connect } from "react-redux";
 import { UserState } from './store/data/user/user.reducer';
 import NotificationBar from './components/Content/NotificationBar/NotificationBar';
+import Login from './components/Login/Login';
 
 export interface Props {
   user: UserState
@@ -24,13 +25,11 @@ const App = ({user}: Props) => {
   return (
       <div className="App">
         <NotificationBar />
-        {/* {!user.auth && <Login />} */}
-        {/* {user.auth && */}
+        {!user.auth ? <Login /> : 
         <Wrapper>
           <Menu onClick={handleMenuSwitch}/>
           <Content show={selectedMenuItem} />
-        </Wrapper> 
-      {/* } */}
+        </Wrapper> } 
       </div>
   );
 }

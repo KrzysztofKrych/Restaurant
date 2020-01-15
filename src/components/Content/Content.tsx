@@ -7,6 +7,7 @@ import "./Content.css"
 import OrdersList from "../OrderList/OrderList";
 import DishesList from "../DishesList/DishesList";
 import ArchivedOrders from "../ArchivedOrders/ArchivedOrders";
+import Settings from "../Settings/Settings";
 
 export interface Props{
     show: string
@@ -20,6 +21,7 @@ const Content = ({show}: Props) => {
             {show === "ingredientsList" && <IngredientsMenu />}
             {show === "dishesList" && <DishesList />}
             {show === "history" && <ArchivedOrders />}
+            {show === "settings" && <Settings />}
         </div>
     )
 }
