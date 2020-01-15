@@ -10,7 +10,6 @@ import { connect } from "react-redux";
 import { UserState } from './store/data/user/user.reducer';
 import NotificationBar from './components/Content/NotificationBar/NotificationBar';
 import Login from './components/Login/Login';
-import fire from './config/firebaseConfig';
 
 export interface Props {
   user: UserState

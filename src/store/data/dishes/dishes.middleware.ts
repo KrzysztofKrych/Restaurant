@@ -3,7 +3,6 @@ import { store } from "../../index";
 import ActionType from "./dishes.actions";
 import Dish from "../../../api/models/Dish";
 import Ingredient from "../../../api/models/Ingredient";
-import fire from '../../../config/firebaseConfig';
 
 export const addDishActionSuccess = (dish: Dish) => {
     store.dispatch({ type: ActionType.ADD_DISH_SUCCESS_ACTION, payload: { dish } });
