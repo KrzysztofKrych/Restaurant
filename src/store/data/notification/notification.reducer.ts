@@ -1,7 +1,7 @@
 import Redux from "redux";
 
 import ActionType, {
-    ShowNotificationBar, HideNotificationBar
+    ShowNotificationBar
 } from "./notification.actions"
 
 export interface NotificationState {

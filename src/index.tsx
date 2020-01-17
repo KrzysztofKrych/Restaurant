@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/index";
 import { fire }  from './config/firebaseConfig';
 import { loginActionSuccess } from './store/data/user/user.middleware';
+import { getDishesActionInit } from './store/data/dishes/dishes.middleware';
 
 
 fire.auth().onAuthStateChanged(function(user) {
@@ -14,6 +15,7 @@ fire.auth().onAuthStateChanged(function(user) {
         loginActionSuccess(user.email || "")
     } 
 });
+getDishesActionInit();
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 

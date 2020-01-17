@@ -1,6 +1,5 @@
 import Redux from "redux"
 
-
 enum ActionType {
     USER_LOGIN_INIT_ACTION = "USER_LOGIN_INIT_ACTION",
     USER_LOGIN_SUCCESS_ACTION  = "USER_LOGIN_SUCCESS_ACTION" ,
@@ -15,9 +14,9 @@ export class UserLoginInitAction implements Redux.Action {
 
 export class UserLoginSuccessAction implements Redux.Action {
     public readonly type = ActionType.USER_LOGIN_SUCCESS_ACTION;
-    public readonly payload: { email: string }
-    constructor(email: string){
-        this.payload = { email }
+    public readonly payload: { email: string, id: number }
+    constructor(email: string, id: number ){
+        this.payload = { email, id }
     }
 }
 export class UserSignOutSuccessAction implements Redux.Action {

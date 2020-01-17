@@ -14,7 +14,8 @@ export interface UserState{
 export const initialUserState: UserState = {
     auth: false,
     user: {
-        email: ""
+        email: "",
+        id: ""
     }
 }
 
@@ -24,12 +25,14 @@ const userReducer: Redux.Reducer<UserState, UserAction> = (state = initialUserSt
     if(ActionType){
         switch(action.type){
             case ActionType.USER_LOGIN_SUCCESS_ACTION: {
-                const email = action.payload.email
+                const { email, id }  = action.payload;
+                console.log(action.payload)
                 return {
                     ...state,
                     user: {
                         ...state.user,
-                        email: email
+                        email: email,
+                        id: String(id)
                     },
                     auth: true
                 }
@@ -39,7 +42,8 @@ const userReducer: Redux.Reducer<UserState, UserAction> = (state = initialUserSt
                     ...state,
                     user: {
                         ...state.user,
-                        email: ""
+                        email: "",
+                        id: ""
                     },
                     auth: false
                 }

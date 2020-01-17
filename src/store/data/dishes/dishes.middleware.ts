@@ -4,6 +4,12 @@ import ActionType from "./dishes.actions";
 import Dish from "../../../api/models/Dish";
 import Ingredient from "../../../api/models/Ingredient";
 
+
+export const getDishesActionInit = async () => {
+    // const dishes = await get('dishes');
+    // store.dispatch({ type: ActionType.SET_DISHES_SUCCESS_ACTION, payload: { dishes } });
+}
+
 export const addDishActionSuccess = (dish: Dish) => {
     store.dispatch({ type: ActionType.ADD_DISH_SUCCESS_ACTION, payload: { dish } });
 }

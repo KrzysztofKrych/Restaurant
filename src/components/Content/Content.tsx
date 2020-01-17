@@ -1,7 +1,6 @@
 import React from "react";
 
 import OrderCreator from "../OrderCreator/OrderCreator";
-import IngredientCreator from "../IngredientCreator/IngredientCreator";
 import IngredientsMenu from "../IngredientsMenu/IngredientsMenu";
 import "./Content.css"
 import OrdersList from "../OrderList/OrderList";

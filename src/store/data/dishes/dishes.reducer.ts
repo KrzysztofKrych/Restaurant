@@ -3,7 +3,8 @@ import Redux from "redux";
 import ActionType, {
     AddDishInitAction,
     RemoveDishInitAction,
-    AddIngredientToDishAction
+    AddIngredientToDishAction,
+    SetDishesSuccessAction
 } from "./dishes.actions"
 import Dish from "../../../api/models/Dish";
 
@@ -12,19 +13,10 @@ export interface DishesState {
 }
 
 export const initialDishesState: DishesState = {
-    dishes: [{
-        name: 'qweqwe',
-        id: Date.now(),
-        ingredients: []
-    },
-    {
-        name: 'qweqwe2',
-        id: Date.now() + 1,
-        ingredients: []
-    }]
+    dishes: []
 }
 
-export type DishesAction = AddDishInitAction | RemoveDishInitAction | AddIngredientToDishAction;
+export type DishesAction = AddDishInitAction | RemoveDishInitAction | AddIngredientToDishAction |SetDishesSuccessAction;
 
 const dishesReducer: Redux.Reducer<DishesState, DishesAction> = (state = initialDishesState, action: DishesAction) => {
     if(ActionType){

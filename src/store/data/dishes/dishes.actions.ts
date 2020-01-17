@@ -4,11 +4,21 @@ import Ingredient from "../../../api/models/Ingredient";
 
 enum ActionType {
     ADD_DISH_SUCCESS_ACTION = "ADD_DISH_SUCCESS_ACTION",
+    SET_DISHES_SUCCESS_ACTION = "SET_DISHES_SUCCESS_ACTION",
     REMOVE_DISH_SUCCESS_ACTION = "REMOVE_DISH_SUCCESS_ACTION",
     ADD_INGREDIENT_TO_DISH_SUCCESS_ACTION = "ADD_INGREDIENT_TO_DISH_SUCCESS_ACTION"
 }
 
 
+
+export class SetDishesSuccessAction implements Redux.Action {
+    public readonly type = ActionType.SET_DISHES_SUCCESS_ACTION;
+    public readonly payload: { dishes: Dish[] }
+
+    constructor(dishes: Dish[]){
+        this.payload = { dishes }
+    }
+}
 export class AddDishInitAction implements Redux.Action {
     public readonly type = ActionType.ADD_DISH_SUCCESS_ACTION;
     public readonly payload: { dish: Dish }
