@@ -2,6 +2,12 @@
 import { store } from "../../index";
 import ActionType from "./ingredients.actions";
 import Ingredient from "../../../api/models/Ingredient";
+import { getIngredients } from "../../repositories/ingredientsRepository";
+
+export const getIngredientsActionInit = async () => {
+    const ingredients = await getIngredients();
+    store.dispatch({ type: ActionType.SET_INGREDIENTS_SUCCESS_ACTION, payload: { ingredients } });
+}
 
 export const addIngredientActionSuccess = (ingredient: Ingredient, successCallback: () => void) => {
     store.dispatch({ type: ActionType.ADD_INGREDIENT_SUCCESS_ACTION, payload: { ingredient } })

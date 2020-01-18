@@ -5,7 +5,17 @@ enum ActionType {
     ADD_INGREDIENT_SUCCESS_ACTION = "ADD_INGREDIENT_SUCCESS_ACTION",
     ADD_AVATAR_TO_INGREDIENT_SUCCESS_ACTION = "ADD_AVATAR_TO_INGREDIENT_SUCCESS_ACTION",
     EDIT_INGREDIENT_NAME_SUCCESS_ACTION = "EDIT_INGREDIENT_NAME_SUCCESS_ACTION",
-    DELETE_INGREDIENT_NAME_SUCCESS_ACTION = "DELETE_INGREDIENT_NAME_SUCCESS_ACTION"
+    DELETE_INGREDIENT_NAME_SUCCESS_ACTION = "DELETE_INGREDIENT_NAME_SUCCESS_ACTION",
+    SET_INGREDIENTS_SUCCESS_ACTION = "SET_INGREDIENTS_SUCCESS_ACTION"
+}
+
+export class SetDishesSuccessAction implements Redux.Action {
+    public readonly type = ActionType.SET_INGREDIENTS_SUCCESS_ACTION;
+    public readonly payload: { ingredients: Ingredient[] }
+
+    constructor(ingredients: Ingredient[]){
+        this.payload = { ingredients }
+    }
 }
 
 export class AddIngredientSuccessAction implements Redux.Action {

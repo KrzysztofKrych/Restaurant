@@ -4,7 +4,8 @@ import ActionType, {
     AddIngredientSuccessAction,
     addAvatarToIngredientActionSuccess,
     editIngredientNameActionSuccess,
-    deleteIngredientNameActionSuccess
+    deleteIngredientNameActionSuccess,
+    SetDishesSuccessAction
 } from "./ingredients.actions"
 import Ingredient from "../../../api/models/Ingredient";
 
@@ -16,11 +17,17 @@ export const initialIngredientsState: IngredientsState = {
     ingredients: []
 }
 
-export type IngredientsAction = AddIngredientSuccessAction | addAvatarToIngredientActionSuccess | editIngredientNameActionSuccess | deleteIngredientNameActionSuccess;
+export type IngredientsAction = AddIngredientSuccessAction | addAvatarToIngredientActionSuccess | editIngredientNameActionSuccess | deleteIngredientNameActionSuccess | SetDishesSuccessAction;
 
 const ingredientsReducer: Redux.Reducer<IngredientsState, IngredientsAction> = (state = initialIngredientsState, action: IngredientsAction) => {
     if(ActionType){
         switch(action.type){
+            case ActionType.SET_INGREDIENTS_SUCCESS_ACTION: {
+                return {
+                    ...state,
+                    ingredients: [...action.payload.ingredients]
+                }
+            }
             case ActionType.ADD_INGREDIENT_SUCCESS_ACTION: {
                 const { ingredient } = action.payload;
                 return {
