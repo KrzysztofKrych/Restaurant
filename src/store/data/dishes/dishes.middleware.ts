@@ -7,8 +7,7 @@ import { getDishes } from "../../repositories/dishesRepository";
 
 
 export const getDishesActionInit = async () => {
-    const dishes = await getDishes()
-    console.log(dishes);
+    const dishes = await getDishes();
     store.dispatch({ type: ActionType.SET_DISHES_SUCCESS_ACTION, payload: { dishes } });
 }
 

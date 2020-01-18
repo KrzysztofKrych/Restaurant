@@ -18,6 +18,6 @@ export const signoutActionInit = () => {
 }
 
 export const loginActionSuccess = async (email: string) => {
-    const user = await getByQuery('users', 'email', email)
+    const user = await getByQuery('users', 'email', email);
     store.dispatch({type: ActionType.USER_LOGIN_SUCCESS_ACTION, payload:  { ...user }  });
 }

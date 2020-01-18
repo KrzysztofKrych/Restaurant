@@ -22,6 +22,7 @@ const App = ({user}: Props) => {
   const handleMenuSwitch = (element: string) => {
     setSelectedMenuItem(element);
   }
+  
   return (
       <div className="App">
         <NotificationBar />

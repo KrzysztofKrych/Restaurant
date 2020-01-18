@@ -10,12 +10,16 @@ import { loginActionSuccess } from './store/data/user/user.middleware';
 import { getDishesActionInit } from './store/data/dishes/dishes.middleware';
 
 
-fire.auth().onAuthStateChanged(function(user) {
+const cb = async (user: any) => {
     if (user) {
-        loginActionSuccess(user.email || "")
+        await loginActionSuccess(user.email || "");
+        await getDishesActionInit();
     } 
-});
-getDishesActionInit();
+}
+
+fire.auth().onAuthStateChanged(cb);
+
+
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 
