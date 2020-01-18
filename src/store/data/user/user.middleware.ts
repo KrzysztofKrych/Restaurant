@@ -1,8 +1,8 @@
 import { store } from "../../index";
-import { fire, db } from "../../../config/firebaseConfig";
+import { fire } from "../../../config/firebaseConfig";
 import ActionType from "./user.actions";
 import Auth from "../../../api/models/Auth";
-import { get, getByQuery } from "../../../config/firebaseReq";
+import { getByQuery } from "../../../config/firebaseReq";
 
 export const loginActionInit = (user: Auth) => {
     fire.auth().signInWithEmailAndPassword(user.login, user.password).then((res) => {

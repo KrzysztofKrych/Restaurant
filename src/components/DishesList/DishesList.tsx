@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { RootState } from '../../store/rootReducer';
 import { connect } from 'react-redux';
 import Dish from '../../api/models/Dish';

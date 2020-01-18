@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState, ChangeEvent } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import Option from '../../../api/models/Option';
 import Input from '../Input/Input';
