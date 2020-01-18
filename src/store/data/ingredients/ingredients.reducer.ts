@@ -13,7 +13,7 @@ export interface IngredientsState {
 }
 
 export const initialIngredientsState: IngredientsState = {
-    ingredients: [{name: "12323", id: Date.now() + 1},{name: "12325", id: Date.now() * Math.random() * Math.random() },{name: "12323", id: Date.now() + 2},{name: "1232", id: Date.now()+3},{name: "12ssssssssssssssssssssssssssssssssssssssssssss ssssssssssssssssssssssssss32", id: Date.now()+5},{name: "12ssssssssssssssssssssssssssssssssss", id: Date.now()+8}]
+    ingredients: []
 }
 
 export type IngredientsAction = AddIngredientSuccessAction | addAvatarToIngredientActionSuccess | editIngredientNameActionSuccess | deleteIngredientNameActionSuccess;

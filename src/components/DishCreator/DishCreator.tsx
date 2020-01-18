@@ -10,12 +10,12 @@ import "./DishCreator.css"
 const DishCreator = () => {
     const [dish, setDish] = useState<Dish>({
         name: "",
-        id: Date.now(),
+        id: String(Date.now()),
         ingredients: []
     });
     const handleAddDish = () => {
         addDishActionSuccess(dish);
-        setDish({name: "", id: Date.now(), ingredients: []});
+        setDish({name: "", id: String(Date.now()), ingredients: []});
         toggleNotificationBarAction("Dish Added", "success");
     }
     const updateDish = (setter: (dish: Dish) => void) => {

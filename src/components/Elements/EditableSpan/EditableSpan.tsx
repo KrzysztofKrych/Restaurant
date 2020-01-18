@@ -5,12 +5,12 @@ import "./EditableSpan.css";
 
 export interface Props {
     text: string
-    onChange: (name: string, id: number) => void;
+    onChange: (name: string, id: string) => void;
     index?: number;
-    id?: number;
+    id?: string;
 }
 
-const EditableSpan = ({text, onChange, index = -1, id = -1}: Props) => {
+const EditableSpan = ({text, onChange, index = -1, id = '-1'}: Props) => {
     const [edit, setEdit] = useState<boolean>(false);
     const [overflow, setOverflow] = useState(-1);
     const overflowStyles = useOverflowText(overflow);

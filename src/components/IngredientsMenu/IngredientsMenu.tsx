@@ -22,7 +22,7 @@ const IngredientsMenu = ({ingredients}: Props) => {
         setIsChecked(false);
     }
 
-    const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>, id:number) => {
+    const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>, id:string) => {
         const file = event.target.files;
         if (file) {
             getBase64(file[0]).then(data => 
@@ -31,11 +31,11 @@ const IngredientsMenu = ({ingredients}: Props) => {
         }
     }
 
-    const handleChangeIngredientName = (name: string, id: number) => {
+    const handleChangeIngredientName = (name: string, id: string) => {
         editIngredientNameActionSuccess(name, id);
     }
 
-    const handleDeleteIngredient = (id:number) => {
+    const handleDeleteIngredient = (id:string) => {
         deleteIngredientNameActionSuccess(id);
         toggleNotificationBarAction("Ingredient Deleted", "danger");
     }

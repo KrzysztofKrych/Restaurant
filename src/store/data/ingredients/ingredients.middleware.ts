@@ -8,14 +8,14 @@ export const addIngredientActionSuccess = (ingredient: Ingredient, successCallba
     successCallback();
 }
 
-export const editIngredientNameActionSuccess = (newName: string, id: number) => {
+export const editIngredientNameActionSuccess = (newName: string, id: string) => {
     store.dispatch({ type: ActionType.EDIT_INGREDIENT_NAME_SUCCESS_ACTION, payload: { newName, id } })
 }
 
-export const deleteIngredientNameActionSuccess = ( id: number) => {
+export const deleteIngredientNameActionSuccess = ( id: string) => {
     store.dispatch({ type: ActionType.DELETE_INGREDIENT_NAME_SUCCESS_ACTION, payload: { id } })
 }
 
-export const addAvatarToIngredientActionSuccess = (avatar: string, id:number) => {
+export const addAvatarToIngredientActionSuccess = (avatar: string, id:string) => {
     store.dispatch({ type: ActionType.ADD_AVATAR_TO_INGREDIENT_SUCCESS_ACTION, payload: { avatar,id } })
 }

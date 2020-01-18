@@ -40,7 +40,7 @@ const OrderCreator = ({dishes, orders}: Props) => {
         if(tableNumber && tableNumber > 0){
             addOrderSuccessAction({
                 dishes: [...tempOrder],
-                id: Date.now(),
+                id: String(Date.now()),
                 table: tableNumber,
                 status: OrderStatus.ORDERED
             });

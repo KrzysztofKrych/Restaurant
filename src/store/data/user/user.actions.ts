@@ -14,8 +14,8 @@ export class UserLoginInitAction implements Redux.Action {
 
 export class UserLoginSuccessAction implements Redux.Action {
     public readonly type = ActionType.USER_LOGIN_SUCCESS_ACTION;
-    public readonly payload: { email: string, id: number }
-    constructor(email: string, id: number ){
+    public readonly payload: { email: string, id: string }
+    constructor(email: string, id: string ){
         this.payload = { email, id }
     }
 }

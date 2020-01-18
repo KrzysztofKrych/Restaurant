@@ -26,7 +26,7 @@ const DishesList = ({dishes, ingredients}: Props) => {
         toggleNotificationBarAction("Dish removed", "danger");
     }
     
-    const handleMultiselectChange = (id: number, containerId: number) => {
+    const handleMultiselectChange = (id: string, containerId:  string) => {
         const ingredient = ingredients.find(ingredient => ingredient.id === id)
         if(ingredient){
             addIngredientToDishActionSuccess(containerId, ingredient);
