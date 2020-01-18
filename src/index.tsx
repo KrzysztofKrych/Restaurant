@@ -10,7 +10,7 @@ import { loginActionSuccess } from './store/data/user/user.middleware';
 import { getDishesActionInit } from './store/data/dishes/dishes.middleware';
 
 
-const cb = async (user: any) => {
+const cb = async (user: firebase.User | null) => {
     if (user) {
         await loginActionSuccess(user.email || "");
         await getDishesActionInit();
