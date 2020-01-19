@@ -19,7 +19,7 @@ const IngredientCreator  = ({onSave}: Props) => {
         name: "",
         avatar: "",
         id: String(Date.now()),
-        dishId: String(Date.now())
+        dishesId: []
     });
 
     const updateIngredient = (setter: (ingredient: Ingredient) => void) => {
@@ -42,7 +42,7 @@ const IngredientCreator  = ({onSave}: Props) => {
     }
 
     const ingredientAdded = () => {
-        setIngredient({dishId: String(Date.now()), name: "", avatar: "", id: String(Date.now())});
+        setIngredient({dishesId: [], name: "", avatar: "", id: String(Date.now())});
         toggleNotificationBarAction("Ingredient Added", "success");
     }
 

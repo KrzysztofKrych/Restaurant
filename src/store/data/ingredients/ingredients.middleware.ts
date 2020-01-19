@@ -3,9 +3,12 @@ import { store } from "../../index";
 import ActionType from "./ingredients.actions";
 import Ingredient from "../../../api/models/Ingredient";
 import { getIngredients } from "../../repositories/ingredientsRepository";
+import { setIngredientsToDishes } from "../../repositories/dishesRepository";
 
 export const getIngredientsActionInit = async () => {
     const ingredients = await getIngredients();
+    const {dishes: {dishes}} = store.getState();
+    setIngredientsToDishes(ingredients, dishes)
     store.dispatch({ type: ActionType.SET_INGREDIENTS_SUCCESS_ACTION, payload: { ingredients } });
 }
 
