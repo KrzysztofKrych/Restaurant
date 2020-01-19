@@ -24,7 +24,6 @@ const setIngredientsToDishes = (ingredients: Ingredient[], dishes: Dish[]) => {
         const ingredientInDish = ingredients.find(ingredient => ingredient.dishesId.includes(dish.id));
         if(ingredientInDish) addIngredientToDishActionSuccess(dish.id, ingredientInDish)
     })
-    console.log(ingredients, dishes)
 }
 
 
