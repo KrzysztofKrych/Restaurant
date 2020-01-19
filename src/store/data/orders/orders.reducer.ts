@@ -4,7 +4,8 @@ import Redux from "redux";
 import ActionType, {
     AddOrderSuccessAction,
     RemoveOrderSuccessAction,
-    ChangeOrderStatusSuccessAction
+    ChangeOrderStatusSuccessAction,
+    SetOrdersSuccessAction
 } from "./orders.actions"
 import Order from "../../../api/models/Order";
 
@@ -17,17 +18,24 @@ export const initialOrderState: OrdersState = {
     orders: []
 }
 
-export type OrdersAction = AddOrderSuccessAction | RemoveOrderSuccessAction | ChangeOrderStatusSuccessAction;
+export type OrdersAction = AddOrderSuccessAction | RemoveOrderSuccessAction | ChangeOrderStatusSuccessAction | SetOrdersSuccessAction;
 
 const ordersReducer: Redux.Reducer<OrdersState, OrdersAction> = (state = initialOrderState, action) => {
     if(ActionType){
         switch(action.type){
-           case ActionType.ADD_ORDER_SUCCESS_ACTION: {
+            case ActionType.SET_ORDERS_SUCCESS_ACTION: {
+                console.log(action.payload.orders)
+                return {
+                    ...state,
+                    orders: [...action.payload.orders]
+                }
+            }
+            case ActionType.ADD_ORDER_SUCCESS_ACTION: {
                return {
                     ...state,
                     orders: [ ...state.orders, action.payload.order ]
                }
-           }
+            }
            case ActionType.REMOVE_ORDER_SUCCESS_ACTION: {
                const { id } = action.payload;
                return {

@@ -4,9 +4,17 @@ import OrderStatus from "../../../api/models/OrderStatus"
 enum ActionType {
     ADD_ORDER_SUCCESS_ACTION = "ADD_ORDER_SUCCESS_ACTION",
     REMOVE_ORDER_SUCCESS_ACTION = "REMOVE_ORDER_SUCCESS_ACTION",
-    CHANGE_ORDER_STATUS_SUCCESS_ACTION = "CHANGE_ORDER_STATUS_SUCCESS_ACTION"
+    CHANGE_ORDER_STATUS_SUCCESS_ACTION = "CHANGE_ORDER_STATUS_SUCCESS_ACTION",
+    SET_ORDERS_SUCCESS_ACTION = "SET_ORDERS_SUCCESS_ACTION"
 }
 
+export class SetOrdersSuccessAction implements Redux.Action {
+    public readonly type = ActionType.SET_ORDERS_SUCCESS_ACTION
+    public readonly payload: { orders: Order[] }
+    public constructor(orders: Order[]){
+        this.payload = { orders }
+    }
+}
 export class AddOrderSuccessAction implements Redux.Action {
     public readonly type = ActionType.ADD_ORDER_SUCCESS_ACTION
     public readonly payload: { order: Order }
