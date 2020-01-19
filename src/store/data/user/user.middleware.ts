@@ -1,8 +1,8 @@
 import { store } from "../../index";
-import { fire, db } from "../../../config/firebaseConfig";
+import { fire } from "../../../config/firebaseConfig";
 import ActionType from "./user.actions";
 import Auth from "../../../api/models/Auth";
-import { get, getByQuery } from "../../../config/firebaseReq";
+import { getByQuery } from "../../../config/firebaseReq";
 
 export const loginActionInit = (user: Auth) => {
     fire.auth().signInWithEmailAndPassword(user.login, user.password).then((res) => {
@@ -18,6 +18,6 @@ export const signoutActionInit = () => {
 }
 
 export const loginActionSuccess = async (email: string) => {
-    const user = await getByQuery('users', 'email', email)
+    const user = await getByQuery('users', 'email', email);
     store.dispatch({type: ActionType.USER_LOGIN_SUCCESS_ACTION, payload:  { ...user }  });
 }

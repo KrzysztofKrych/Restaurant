@@ -8,14 +8,20 @@ import { store } from "./store/index";
 import { fire }  from './config/firebaseConfig';
 import { loginActionSuccess } from './store/data/user/user.middleware';
 import { getDishesActionInit } from './store/data/dishes/dishes.middleware';
+import { getIngredientsActionInit } from './store/data/ingredients/ingredients.middleware';
 
 
-fire.auth().onAuthStateChanged(function(user) {
+const cb = async (user: firebase.User | null) => {
     if (user) {
-        loginActionSuccess(user.email || "")
+        await loginActionSuccess(user.email || "");
+        await getDishesActionInit();
+        await getIngredientsActionInit();
     } 
-});
-getDishesActionInit();
+}
+
+fire.auth().onAuthStateChanged(cb);
+
+
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 

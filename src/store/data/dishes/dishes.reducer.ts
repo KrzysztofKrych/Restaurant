@@ -21,6 +21,12 @@ export type DishesAction = AddDishInitAction | RemoveDishInitAction | AddIngredi
 const dishesReducer: Redux.Reducer<DishesState, DishesAction> = (state = initialDishesState, action: DishesAction) => {
     if(ActionType){
         switch(action.type){
+            case ActionType.SET_DISHES_SUCCESS_ACTION : {
+                return {
+                    ...state,
+                    dishes: [...action.payload.dishes]
+                }
+            }
             case ActionType.ADD_DISH_SUCCESS_ACTION : {
                 return {
                     ...state,

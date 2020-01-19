@@ -26,7 +26,6 @@ const userReducer: Redux.Reducer<UserState, UserAction> = (state = initialUserSt
         switch(action.type){
             case ActionType.USER_LOGIN_SUCCESS_ACTION: {
                 const { email, id }  = action.payload;
-                console.log(action.payload)
                 return {
                     ...state,
                     user: {

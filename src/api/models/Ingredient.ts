@@ -1,5 +1,6 @@
 export default interface Ingredient {
     name: string
     avatar?: string
-    id: number
+    id: string
+    dishesId: string[]
 }

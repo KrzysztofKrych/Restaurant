@@ -4,7 +4,8 @@ import ActionType, {
     AddIngredientSuccessAction,
     addAvatarToIngredientActionSuccess,
     editIngredientNameActionSuccess,
-    deleteIngredientNameActionSuccess
+    deleteIngredientNameActionSuccess,
+    SetDishesSuccessAction
 } from "./ingredients.actions"
 import Ingredient from "../../../api/models/Ingredient";
 
@@ -13,14 +14,20 @@ export interface IngredientsState {
 }
 
 export const initialIngredientsState: IngredientsState = {
-    ingredients: [{name: "12323", id: Date.now() + 1},{name: "12325", id: Date.now() * Math.random() * Math.random() },{name: "12323", id: Date.now() + 2},{name: "1232", id: Date.now()+3},{name: "12ssssssssssssssssssssssssssssssssssssssssssss ssssssssssssssssssssssssss32", id: Date.now()+5},{name: "12ssssssssssssssssssssssssssssssssss", id: Date.now()+8}]
+    ingredients: []
 }
 
-export type IngredientsAction = AddIngredientSuccessAction | addAvatarToIngredientActionSuccess | editIngredientNameActionSuccess | deleteIngredientNameActionSuccess;
+export type IngredientsAction = AddIngredientSuccessAction | addAvatarToIngredientActionSuccess | editIngredientNameActionSuccess | deleteIngredientNameActionSuccess | SetDishesSuccessAction;
 
 const ingredientsReducer: Redux.Reducer<IngredientsState, IngredientsAction> = (state = initialIngredientsState, action: IngredientsAction) => {
     if(ActionType){
         switch(action.type){
+            case ActionType.SET_INGREDIENTS_SUCCESS_ACTION: {
+                return {
+                    ...state,
+                    ingredients: [...action.payload.ingredients]
+                }
+            }
             case ActionType.ADD_INGREDIENT_SUCCESS_ACTION: {
                 const { ingredient } = action.payload;
                 return {

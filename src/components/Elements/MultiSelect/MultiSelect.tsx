@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState, ChangeEvent } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import Option from '../../../api/models/Option';
 import Input from '../Input/Input';
@@ -10,7 +10,7 @@ import './MultiSelect.css';
 export interface Props {
     options: Option[];
     text: string;
-    onChange: (id: number, containerId: number ) => void
+    onChange: (id: string, containerId: string) => void
 }
 
 const MultiSelect = ({options, text, onChange}: Props) => {
@@ -21,14 +21,14 @@ const MultiSelect = ({options, text, onChange}: Props) => {
         setIsComponentVisible(!isComponentVisible);
     }
 
-    const handleClick = (id: number, containerId: number) => {
+    const handleClick = (id: string, containerId: string) => {
         onChange(id, containerId);
     }
 
     const createOption = (option: Option, index: number) => 
         <div key={index} 
             className={`option ${option.checked ? 'checked' : ''}`} 
-            onClick={() => handleClick(option.id, option.containerId || -1)}>
+            onClick={() => handleClick(option.id, option.containerId || '-1')}>
             <div>{option.name}</div>
         </div> 
     

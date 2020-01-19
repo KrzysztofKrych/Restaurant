@@ -1,4 +1,4 @@
-import React, { useState, Dispatch } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Menu from "./components/Menu/Menu";
 import Wrapper from "./components/Wrapper/Wrapper";
@@ -22,6 +22,7 @@ const App = ({user}: Props) => {
   const handleMenuSwitch = (element: string) => {
     setSelectedMenuItem(element);
   }
+
   return (
       <div className="App">
         <NotificationBar />

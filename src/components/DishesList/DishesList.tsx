@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { RootState } from '../../store/rootReducer';
 import { connect } from 'react-redux';
 import Dish from '../../api/models/Dish';
@@ -26,7 +26,7 @@ const DishesList = ({dishes, ingredients}: Props) => {
         toggleNotificationBarAction("Dish removed", "danger");
     }
     
-    const handleMultiselectChange = (id: number, containerId: number) => {
+    const handleMultiselectChange = (id: string, containerId: string) => {
         const ingredient = ingredients.find(ingredient => ingredient.id === id)
         if(ingredient){
             addIngredientToDishActionSuccess(containerId, ingredient);
@@ -49,8 +49,8 @@ const DishesList = ({dishes, ingredients}: Props) => {
                         <div className="information-container">
                             <span className="dish-name">{index + 1}. {dish.name}</span>
                             <div className="ingredients-container-in-dishes">
-                                {dish.ingredients.map(ingredient => 
-                                    <div>{ingredient.name}</div>
+                                {dish.ingredients.map((ingredient, ingIndex) => 
+                                    <div key={ingIndex}>{ingredient.name}</div>
                                 )}
                             </div>
                         </div>

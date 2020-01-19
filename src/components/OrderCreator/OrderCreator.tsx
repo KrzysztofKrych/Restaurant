@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import Input from '../Elements/Input/Input';
 import { RootState } from '../../store/rootReducer';
 import Dish from '../../api/models/Dish';
@@ -40,7 +40,7 @@ const OrderCreator = ({dishes, orders}: Props) => {
         if(tableNumber && tableNumber > 0){
             addOrderSuccessAction({
                 dishes: [...tempOrder],
-                id: Date.now(),
+                id: String(Date.now()),
                 table: tableNumber,
                 status: OrderStatus.ORDERED
             });

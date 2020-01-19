@@ -18,7 +18,7 @@ const OrdersList = ({orders}: Props) => {
 
     const [checkedRadioInput, setCheckedRadioInput ] = useState(OrderStatus.ORDERED);
         
-    const handleRemoveOrder = (id: number) => {
+    const handleRemoveOrder = (id: string) => {
         removeOrderSuccessAction(id);
         toggleNotificationBarAction("Order Removed", "danger")
     }
