@@ -6,7 +6,8 @@ import { addIngredientToDishActionSuccess } from "../data/dishes/dishes.middlewa
 
 const getDishes = async (): Promise<Dish[]> => {
     const { user: {user} } = store.getState();
-    return await db.collection("dishes").get().then(snapshot => 
+    const q = db.collection("dishes").where('userId', "==", user.id)
+    return await q.get().then(snapshot => 
         snapshot.docs.map(doc => {
             const data = doc.data();
             return {
@@ -24,7 +25,6 @@ const setIngredientsToDishes = (ingredients: Ingredient[], dishes: Dish[]) => {
         const ingredientInDish = ingredients.find(ingredient => ingredient.dishesId.includes(dish.id));
         if(ingredientInDish) addIngredientToDishActionSuccess(dish.id, ingredientInDish)
     })
-    console.log(ingredients, dishes)
 }
 
 

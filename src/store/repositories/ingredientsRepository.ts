@@ -4,7 +4,9 @@ import { store } from "../index";
 import Ingredient from "../../api/models/Ingredient";
 
 const getIngredients = async (): Promise<Ingredient[]> => {
-    return await db.collection("ingredients").get().then(snapshot => 
+    const { user: {user} } = store.getState();
+    const q = db.collection("ingredients").where('userId', "==", user.id)
+    return await q.get().then(snapshot => 
         snapshot.docs.map(doc => {
             const data = doc.data();
             return {
