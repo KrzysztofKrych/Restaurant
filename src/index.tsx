@@ -15,9 +15,9 @@ import { getOrdersActionInit } from './store/data/orders/orders.middleware';
 const cb = async (user: firebase.User | null) => {
     if (user) {
         await loginActionSuccess(user.email || "");
+        await getOrdersActionInit();
         await getDishesActionInit();
         await getIngredientsActionInit();
-        await getOrdersActionInit();
     } 
 }
 

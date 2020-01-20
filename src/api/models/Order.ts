@@ -7,4 +7,5 @@ export default interface Order {
     table: number;
     status: OrderStatus;
     userId: string;
+    dishesId: string[]
 }
