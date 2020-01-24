@@ -1,12 +1,11 @@
 import { db } from "../../config/firebaseConfig"
-import { store } from "../index";
 import Order from "../../api/models/Order";
 import Dish from "../../api/models/Dish";
 import { addDishToOrderActionSuccess } from "../data/orders/orders.middleware";
+import { getUserId } from "../../helpers/helpers";
 
 const getOrders = async (): Promise<Order[]> => {
-    const { user: {user} } = store.getState();
-    const q = db.collection("orders").where('userId', "==", user.id)
+    const q = db.collection("orders").where('userId', "==", getUserId())
     return await q.get().then(snapshot => 
         snapshot.docs.map(doc => {
             const data = doc.data();

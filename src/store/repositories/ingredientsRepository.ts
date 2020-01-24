@@ -1,5 +1,4 @@
 import { db } from "../../config/firebaseConfig"
-import { store } from "../index";
 import Ingredient from "../../api/models/Ingredient";
 import { getUserId } from "../../helpers/helpers";
 
@@ -28,9 +27,8 @@ const addIngredient = async (ingredient: Ingredient) => {
     })
 }
 const removeIngredient = async (id: string) => {
-    return await db.collection("ingredients").doc(id).delete().then(() => {
-        return true
-    }).catch((error) => {
+    return await db.collection("ingredients").doc(id).delete().then(() => true
+    ).catch((error) => {
         console.log(error);
         return false
     })
