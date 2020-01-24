@@ -4,10 +4,13 @@ import ActionType from "./dishes.actions";
 import Dish from "../../../api/models/Dish";
 import Ingredient from "../../../api/models/Ingredient";
 import { getDishes } from "../../repositories/dishesRepository";
+import { setDishesToOrders } from "../../repositories/ordersRepository";
 
 
 export const getDishesActionInit = async () => {
     const dishes = await getDishes();
+    const {orders: {orders}} = store.getState();
+    setDishesToOrders(dishes, orders)
     store.dispatch({ type: ActionType.SET_DISHES_SUCCESS_ACTION, payload: { dishes } });
 }
 

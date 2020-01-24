@@ -22,8 +22,8 @@ const getByQuery = async (collection: string, query: string, value: string) => {
         }
     ));
     return {
-        email: queries[0].email || "",
-        id: queries[0].id || ""
+        email: (queries[0] && queries[0].email) || "",
+        id: (queries[0] && queries[0].id) || ""
     }
 }
 export {

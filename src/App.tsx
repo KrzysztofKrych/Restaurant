@@ -12,11 +12,11 @@ import NotificationBar from './components/Content/NotificationBar/NotificationBa
 import Login from './components/Login/Login';
 
 export interface Props {
-  user: UserState
+  activeUser: UserState
 }
 
 
-const App = ({user}: Props) => {
+const App = ({activeUser}: Props) => {
   const [selectedMenuItem, setSelectedMenuItem] = useState("newOrder");
 
   const handleMenuSwitch = (element: string) => {
@@ -26,7 +26,7 @@ const App = ({user}: Props) => {
   return (
       <div className="App">
         <NotificationBar />
-        {!user.auth ? <Login /> : 
+        {!activeUser.auth ? <Login /> : 
         <Wrapper>
           <Menu onClick={handleMenuSwitch}/>
           <Content show={selectedMenuItem} />
@@ -38,7 +38,7 @@ const App = ({user}: Props) => {
 const map = {
   state: (state: RootState) => {
     return {
-      user: state.user
+      activeUser: state.user
     }
   }
 }
