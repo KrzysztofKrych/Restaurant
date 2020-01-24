@@ -1,3 +1,5 @@
+import { store } from "../store";
+
 const getBase64 = (file: File) => {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -7,10 +9,12 @@ const getBase64 = (file: File) => {
     });
 }
 
-const s = (a:number) => a+a
+const getUserId = () => store.getState().user.user.id;
+
+
 
 
 export {
     getBase64,
-    s
+    getUserId
 }
