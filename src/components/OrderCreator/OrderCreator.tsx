@@ -42,7 +42,9 @@ const OrderCreator = ({dishes, orders}: Props) => {
                 dishes: [...tempOrder],
                 id: String(Date.now()),
                 table: tableNumber,
-                status: OrderStatus.ORDERED
+                status: OrderStatus.ORDERED,
+                userId: "",
+                dishesId: []
             });
             setTempOrder([]);
             setTableNumber(0);

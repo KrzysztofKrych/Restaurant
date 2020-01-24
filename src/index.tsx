@@ -9,11 +9,13 @@ import { fire }  from './config/firebaseConfig';
 import { loginActionSuccess } from './store/data/user/user.middleware';
 import { getDishesActionInit } from './store/data/dishes/dishes.middleware';
 import { getIngredientsActionInit } from './store/data/ingredients/ingredients.middleware';
+import { getOrdersActionInit } from './store/data/orders/orders.middleware';
 
 
 const cb = async (user: firebase.User | null) => {
     if (user) {
         await loginActionSuccess(user.email || "");
+        await getOrdersActionInit();
         await getDishesActionInit();
         await getIngredientsActionInit();
     } 
