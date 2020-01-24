@@ -28,8 +28,32 @@ const setDishesToOrders = (dishes: Dish[], orders: Order[]) => {
     })
 }
 
+const addOrder = async (order: Order) => {
+    const dishesId = order.dishes.map(dish => dish.id);
+    const {status, table} = order;
+    const body = {
+        dishesId, status, table,
+        userId: getUserId()
+    }
+    return await db.collection("orders").add(body).then((docRef) => {
+        return docRef.id
+    }).catch((error) => {
+        console.log(error);
+        return ""
+    })
+}
+const removeOrder = async (id: string) => {
+    return await db.collection("orders").doc(id).delete().then(() => true
+    ).catch((error) => {
+        console.log(error);
+        return false
+    })
+}
+
 
 export {
     getOrders,
-    setDishesToOrders
+    setDishesToOrders,
+    addOrder,
+    removeOrder
 }

@@ -13,8 +13,9 @@ export const getIngredientsActionInit = async () => {
 }
 
 export const addIngredientActionSuccess = async (ingredient: Ingredient, successCallback: () => void) => {
-    const added = await addIngredient(ingredient);
-    if(added){
+    const addedId = await addIngredient(ingredient);
+    if(addedId){
+        ingredient.id = addedId
         store.dispatch({ type: ActionType.ADD_INGREDIENT_SUCCESS_ACTION, payload: { ingredient } })
         successCallback();
     }

@@ -19,11 +19,11 @@ const getIngredients = async (): Promise<Ingredient[]> => {
 
 const addIngredient = async (ingredient: Ingredient) => {
     ingredient.userId = getUserId();
-    return await db.collection("ingredients").add(ingredient).then(() => {
-        return true
+    return await db.collection("ingredients").add(ingredient).then((docRef) => {
+        return docRef.id
     }).catch((error) => {
-        console.log(error);
-        return false
+        console.log(error)
+        return ""
     })
 }
 const removeIngredient = async (id: string) => {
