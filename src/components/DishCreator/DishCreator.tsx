@@ -12,11 +12,12 @@ const DishCreator = () => {
         name: "",
         id: String(Date.now()),
         userId: String(Date.now()),
-        ingredients: []
+        ingredients: [],
+        ingredientsId: []
     });
     const handleAddDish = () => {
         addDishActionSuccess(dish);
-        setDish({name: "", id: String(Date.now()),userId: String(Date.now()), ingredients: []});
+        setDish({ingredientsId: [], name: "", id: String(Date.now()),userId: String(Date.now()), ingredients: []});
         toggleNotificationBarAction("Dish Added", "success");
     }
     const updateDish = (setter: (dish: Dish) => void) => {
