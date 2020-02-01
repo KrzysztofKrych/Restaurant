@@ -33,7 +33,7 @@ const setIngredientsToDishes = (ingredients: Ingredient[], dishes: Dish[]) => {
 }
 
 const addDish = async (dish: Dish) => {
-    const {name} = dish
+    const { name } = dish
     const body = {
         name,
         userId: getUserId(),
@@ -56,9 +56,13 @@ const removeDish = async (id: string) => {
 }
 
 const addIngredientToDish = async (dish:Dish, id: string) => {
-    const { ingredientsId } = dish;
+    let { ingredientsId } = dish;
+    ingredientsId = ingredientsId.includes(id) ? 
+    ingredientsId = ingredientsId.filter(ingredientId => ingredientId !== id) :
+    ingredientsId = ingredientsId.concat(id);
+    
     return await db.collection("dishes").doc(dish.id).update({
-        ingredientsId: ingredientsId.concat(id)
+        ingredientsId
     }).then(() => true)
     .catch((error) => {
         console.log(error);
