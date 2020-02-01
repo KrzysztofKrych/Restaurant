@@ -74,7 +74,6 @@ const dishesReducer: Redux.Reducer<DishesState, DishesAction> = (state = initial
                             dish.ingredientsId = [...ingredientsId];
                             dish.ingredients = [...ingredients];
                         }
-                        console.log(dish)
                         return dish;
                     })
                 }
