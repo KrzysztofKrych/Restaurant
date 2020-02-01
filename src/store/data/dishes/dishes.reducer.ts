@@ -34,7 +34,7 @@ const dishesReducer: Redux.Reducer<DishesState, DishesAction> = (state = initial
                 }
             }
             case ActionType.REMOVE_DISH_SUCCESS_ACTION : {
-                const { id } = action.payload.dish;
+                const { id } = action.payload;
 
                 return {
                     ...state,
