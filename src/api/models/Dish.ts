@@ -5,5 +5,5 @@ export default interface Dish {
     id: string
     userId: string;
     ingredients: Ingredient[]
-    ingredientsIdsContainer?: string[]
+    ingredientsId: string[]
 }

@@ -3,7 +3,7 @@ import { store } from "../../index";
 import ActionType from "./dishes.actions";
 import Dish from "../../../api/models/Dish";
 import Ingredient from "../../../api/models/Ingredient";
-import { getDishes, addDish, removeDish } from "../../repositories/dishesRepository";
+import { getDishes, addDish, removeDish, addIngredientToDish } from "../../repositories/dishesRepository";
 import { setDishesToOrders } from "../../repositories/ordersRepository";
 
 
@@ -29,6 +29,14 @@ export const removeDishActionSuccess = async (id: string) => {
     }
 }
 
-export const addIngredientToDishActionSuccess = (id: string, ingredient:Ingredient) => {
+export const addIngredientToDishActionSuccess = async (id: string, ingredient:Ingredient) => {
     store.dispatch({ type: ActionType.ADD_INGREDIENT_TO_DISH_SUCCESS_ACTION, payload: { id, ingredient } })
+}
+
+export const addNewIngredientToDishActionSuccess  = async (dish: Dish, ingredient:Ingredient) => {
+    const { id } = dish
+    const ingredientsId = await addIngredientToDish(dish, ingredient.id);
+    if(ingredientsId){
+        store.dispatch({ type: ActionType.ADD_INGREDIENT_TO_DISH_SUCCESS_ACTION, payload: {id , ingredient, ingredientsId } })
+    }
 }

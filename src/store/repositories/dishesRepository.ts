@@ -14,7 +14,7 @@ const getDishes = async (): Promise<Dish[]> => {
                 name: data.name,
                 userId: getUserId(),
                 ingredients: [],
-                ingredientsIdsContainer: data.ingredientsId
+                ingredientsId: data.ingredientsId
             }
         }
     ));
@@ -22,14 +22,18 @@ const getDishes = async (): Promise<Dish[]> => {
 
 const setIngredientsToDishes = (ingredients: Ingredient[], dishes: Dish[]) => {
     dishes.forEach(dish => {
-        const ingredientInDish = ingredients.find(ingredient => 
-                                dish.ingredientsIdsContainer && dish.ingredientsIdsContainer.includes(ingredient.id));
-        if(ingredientInDish) addIngredientToDishActionSuccess(dish.id, ingredientInDish)
+        const ingredientsInDish = ingredients.filter(ingredient => 
+                                dish.ingredientsId && dish.ingredientsId.includes(ingredient.id));
+        if(ingredientsInDish){
+            ingredientsInDish.forEach(ingredient => {
+                addIngredientToDishActionSuccess(dish.id, ingredient)
+            })
+        }
     })
 }
 
 const addDish = async (dish: Dish) => {
-    const {name} = dish
+    const { name } = dish
     const body = {
         name,
         userId: getUserId(),
@@ -44,10 +48,25 @@ const addDish = async (dish: Dish) => {
 }
 
 const removeDish = async (id: string) => {
-    return await db.collection("dishes").doc(id).delete().then(() => true
-    ).catch((error) => {
+    return await db.collection("dishes").doc(id).delete().then(() => true)
+    .catch((error) => {
         console.log(error);
         return false
+    })
+}
+
+const addIngredientToDish = async (dish:Dish, id: string) => {
+    let { ingredientsId } = dish;
+    ingredientsId = ingredientsId.includes(id) ? 
+    ingredientsId = ingredientsId.filter(ingredientId => ingredientId !== id) :
+    ingredientsId = ingredientsId.concat(id);
+
+    return await db.collection("dishes").doc(dish.id).update({
+        ingredientsId
+    }).then(() => ingredientsId)
+    .catch((error) => {
+        console.log(error);
+        return []
     })
 }
 
@@ -55,5 +74,6 @@ export {
     getDishes,
     setIngredientsToDishes,
     addDish,
-    removeDish
+    removeDish,
+    addIngredientToDish
 }

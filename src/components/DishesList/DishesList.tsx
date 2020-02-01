@@ -5,7 +5,7 @@ import Dish from '../../api/models/Dish';
 import DishCreator from '../DishCreator/DishCreator';
 import "./DishesList.css";
 import Button from '../Elements/Button/Button';
-import { removeDishActionSuccess, addIngredientToDishActionSuccess } from '../../store/data/dishes/dishes.middleware';
+import { removeDishActionSuccess, addNewIngredientToDishActionSuccess } from '../../store/data/dishes/dishes.middleware';
 import { toggleNotificationBarAction } from '../../store/data/notification/notification.middleware';
 import MultiSelect from '../Elements/MultiSelect/MultiSelect';
 import Ingredient from '../../api/models/Ingredient';
@@ -28,8 +28,9 @@ const DishesList = ({dishes, ingredients}: Props) => {
     
     const handleMultiselectChange = (id: string, containerId: string) => {
         const ingredient = ingredients.find(ingredient => ingredient.id === id)
-        if(ingredient){
-            addIngredientToDishActionSuccess(containerId, ingredient);
+        const dish = dishes.find(dish => dish.id === containerId)
+        if(ingredient && dish){
+            addNewIngredientToDishActionSuccess(dish, ingredient);
         }
     }
 
