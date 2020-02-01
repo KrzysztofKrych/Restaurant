@@ -30,10 +30,10 @@ export class AddDishInitAction implements Redux.Action {
 
 export class RemoveDishInitAction implements Redux.Action {
     public readonly type = ActionType.REMOVE_DISH_SUCCESS_ACTION;
-    public readonly payload: { dish: Dish }
+    public readonly payload: { id: string }
 
-    constructor(dish: Dish){
-        this.payload = { dish }
+    constructor(id: string){
+        this.payload = { id }
     }
 }
 

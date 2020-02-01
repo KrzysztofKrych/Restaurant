@@ -42,6 +42,7 @@ const addOrder = async (order: Order) => {
         return ""
     })
 }
+
 const removeOrder = async (id: string) => {
     return await db.collection("orders").doc(id).delete().then(() => true
     ).catch((error) => {

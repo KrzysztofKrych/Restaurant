@@ -10,7 +10,6 @@ const getIngredients = async (): Promise<Ingredient[]> => {
             return {
                 id: doc.id,
                 name: data.name,
-                dishesId: data.dishesId,
                 userId: getUserId(),
             }
         }

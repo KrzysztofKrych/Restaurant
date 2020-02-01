@@ -21,8 +21,8 @@ const DishesList = ({dishes, ingredients}: Props) => {
         ingredients.map(ingredient => ({name: ingredient.name, id: ingredient.id, checked: false}))
     )
 
-    const removeDish = (dish: Dish) => {
-        removeDishActionSuccess(dish);
+    const removeDish = (id: string) => {
+        removeDishActionSuccess(id);
         toggleNotificationBarAction("Dish removed", "danger");
     }
     
@@ -59,7 +59,7 @@ const DishesList = ({dishes, ingredients}: Props) => {
                                 options={getOptionsFromIngredients(dish)} 
                                 text="choose ingredients" 
                                 onChange={handleMultiselectChange} />
-                            <Button onClick={() => removeDish(dish)} variant="danger">Remove</Button>
+                            <Button onClick={() => removeDish(dish.id)} variant="danger">Remove</Button>
                         </div>
                     </div>
                 ) :
