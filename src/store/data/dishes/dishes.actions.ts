@@ -6,7 +6,8 @@ enum ActionType {
     ADD_DISH_SUCCESS_ACTION = "ADD_DISH_SUCCESS_ACTION",
     SET_DISHES_SUCCESS_ACTION = "SET_DISHES_SUCCESS_ACTION",
     REMOVE_DISH_SUCCESS_ACTION = "REMOVE_DISH_SUCCESS_ACTION",
-    ADD_INGREDIENT_TO_DISH_SUCCESS_ACTION = "ADD_INGREDIENT_TO_DISH_SUCCESS_ACTION"
+    ADD_INGREDIENT_TO_DISH_SUCCESS_ACTION = "ADD_INGREDIENT_TO_DISH_SUCCESS_ACTION",
+    REFRESH_INGREDIENTS_IN_DISH_SUCCESS_ACTION = "REFRESH_INGREDIENTS_IN_DISH_SUCCESS_ACTION"
 }
 
 
@@ -43,6 +44,15 @@ export class AddIngredientToDishAction implements Redux.Action {
 
     constructor(id: string, ingredient: Ingredient, ingredientsId?: string[]){
         this.payload = { id, ingredient, ingredientsId }
+    }
+}
+
+export class RefreshIngredientsInDishAction implements Redux.Action {
+    public readonly type = ActionType.REFRESH_INGREDIENTS_IN_DISH_SUCCESS_ACTION;
+    public readonly payload: { dishId: string, ingredientsId: string[] }
+
+    constructor(dishId: string, ingredientsId: string[]){
+        this.payload = { dishId, ingredientsId }
     }
 }
 

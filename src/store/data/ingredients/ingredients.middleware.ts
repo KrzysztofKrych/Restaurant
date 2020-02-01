@@ -4,6 +4,7 @@ import ActionType from "./ingredients.actions";
 import Ingredient from "../../../api/models/Ingredient";
 import { getIngredients, addIngredient, removeIngredient } from "../../repositories/ingredientsRepository";
 import { setIngredientsToDishes } from "../../repositories/dishesRepository";
+import { refreshIngredientsInDishes } from "../dishes/dishes.middleware";
 
 export const getIngredientsActionInit = async () => {
     const ingredients = await getIngredients();
@@ -28,6 +29,7 @@ export const editIngredientNameActionSuccess = (newName: string, id: string) => 
 export const deleteIngredientNameActionSuccess = async (id: string) => {
     const removed = await removeIngredient(id);
     if(removed){
+        refreshIngredientsInDishes(id)
         store.dispatch({ type: ActionType.DELETE_INGREDIENT_NAME_SUCCESS_ACTION, payload: { id } })
     }
 }
