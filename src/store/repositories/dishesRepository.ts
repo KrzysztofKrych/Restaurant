@@ -69,11 +69,24 @@ const addIngredientToDish = async (dish:Dish, id: string) => {
         return []
     })
 }
+const removeIngredientFromDish = async (dish:Dish, id: string) => {
+    let { ingredientsId } = dish;
+    ingredientsId = ingredientsId.filter(ingredientId => ingredientId !== id);
+
+    return await db.collection("dishes").doc(dish.id).update({
+        ingredientsId
+    }).then(() => ingredientsId)
+    .catch((error) => {
+        console.log(error);
+        return []
+    })
+}
 
 export {
     getDishes,
     setIngredientsToDishes,
     addDish,
     removeDish,
-    addIngredientToDish
+    addIngredientToDish,
+    removeIngredientFromDish
 }

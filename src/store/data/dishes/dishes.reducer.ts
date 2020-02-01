@@ -4,7 +4,8 @@ import ActionType, {
     AddDishInitAction,
     RemoveDishInitAction,
     AddIngredientToDishAction,
-    SetDishesSuccessAction
+    SetDishesSuccessAction,
+    RefreshIngredientsInDishAction
 } from "./dishes.actions"
 import Dish from "../../../api/models/Dish";
 
@@ -16,7 +17,7 @@ export const initialDishesState: DishesState = {
     dishes: []
 }
 
-export type DishesAction = AddDishInitAction | RemoveDishInitAction | AddIngredientToDishAction |SetDishesSuccessAction;
+export type DishesAction = AddDishInitAction | RemoveDishInitAction | AddIngredientToDishAction | SetDishesSuccessAction | RefreshIngredientsInDishAction;
 
 const dishesReducer: Redux.Reducer<DishesState, DishesAction> = (state = initialDishesState, action: DishesAction) => {
     if(ActionType){
@@ -55,12 +56,27 @@ const dishesReducer: Redux.Reducer<DishesState, DishesAction> = (state = initial
                                     dish.ingredients.push(ingredient)
                                 }
                                 if(ingredientsId){
-                                    dish.ingredientsId = ingredientsId;
+                                    dish.ingredientsId = [...ingredientsId];
                                 }
                             }
                             return dish;
                         })
                     ]
+                }
+            }
+            case ActionType.REFRESH_INGREDIENTS_IN_DISH_SUCCESS_ACTION: {
+                const { dishId, ingredientsId } = action.payload;
+                return {
+                    ...state,
+                    dishes: state.dishes.filter(dish => {
+                        if(dish.id === dishId){
+                            const ingredients = dish.ingredients.filter(ingredient => ingredientsId.includes(ingredient.id))
+                            dish.ingredientsId = [...ingredientsId];
+                            dish.ingredients = [...ingredients];
+                        }
+                        console.log(dish)
+                        return dish;
+                    })
                 }
             }
             default: {
