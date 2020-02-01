@@ -39,10 +39,10 @@ export class RemoveDishInitAction implements Redux.Action {
 
 export class AddIngredientToDishAction implements Redux.Action {
     public readonly type = ActionType.ADD_INGREDIENT_TO_DISH_SUCCESS_ACTION;
-    public readonly payload: { id: string, ingredient: Ingredient }
+    public readonly payload: { id: string, ingredient: Ingredient, ingredientsId?: string[] }
 
-    constructor(id: string, ingredient: Ingredient){
-        this.payload = { id, ingredient }
+    constructor(id: string, ingredient: Ingredient, ingredientsId?: string[]){
+        this.payload = { id, ingredient, ingredientsId }
     }
 }
 

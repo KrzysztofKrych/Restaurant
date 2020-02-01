@@ -35,8 +35,8 @@ export const addIngredientToDishActionSuccess = async (id: string, ingredient:In
 
 export const addNewIngredientToDishActionSuccess  = async (dish: Dish, ingredient:Ingredient) => {
     const { id } = dish
-    const addedId = await addIngredientToDish(dish, ingredient.id);
-    if(addedId){
-        store.dispatch({ type: ActionType.ADD_INGREDIENT_TO_DISH_SUCCESS_ACTION, payload: {id , ingredient } })
+    const ingredientsId = await addIngredientToDish(dish, ingredient.id);
+    if(ingredientsId){
+        store.dispatch({ type: ActionType.ADD_INGREDIENT_TO_DISH_SUCCESS_ACTION, payload: {id , ingredient, ingredientsId } })
     }
 }

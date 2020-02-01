@@ -60,13 +60,13 @@ const addIngredientToDish = async (dish:Dish, id: string) => {
     ingredientsId = ingredientsId.includes(id) ? 
     ingredientsId = ingredientsId.filter(ingredientId => ingredientId !== id) :
     ingredientsId = ingredientsId.concat(id);
-    
+
     return await db.collection("dishes").doc(dish.id).update({
         ingredientsId
-    }).then(() => true)
+    }).then(() => ingredientsId)
     .catch((error) => {
         console.log(error);
-        return false
+        return []
     })
 }
 

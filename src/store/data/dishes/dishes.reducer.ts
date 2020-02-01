@@ -42,7 +42,7 @@ const dishesReducer: Redux.Reducer<DishesState, DishesAction> = (state = initial
                 }
             }
             case ActionType.ADD_INGREDIENT_TO_DISH_SUCCESS_ACTION: {
-                const { id, ingredient } = action.payload;
+                const { id, ingredient, ingredientsId } = action.payload;
                 return {
                     ...state,
                     dishes: [
@@ -53,6 +53,9 @@ const dishesReducer: Redux.Reducer<DishesState, DishesAction> = (state = initial
                                     dish.ingredients.splice(index,1)
                                 }else{
                                     dish.ingredients.push(ingredient)
+                                }
+                                if(ingredientsId){
+                                    dish.ingredientsId = ingredientsId;
                                 }
                             }
                             return dish;
