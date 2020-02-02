@@ -36,10 +36,10 @@ const addOrder = async (order: Order) => {
         userId: getUserId()
     }
     return await db.collection("orders").add(body).then((docRef) => {
-        return docRef.id
+        return { id: docRef.id,dishesId: dishesId }
     }).catch((error) => {
         console.log(error);
-        return ""
+        return {id: "0", dishesId: []}
     })
 }
 
@@ -51,10 +51,42 @@ const removeOrder = async (id: string) => {
     })
 }
 
+const addDishToOrder = async (order:Order, id: string) => {
+    let { dishesId } = order;
+    dishesId = dishesId.includes(id) ? 
+    dishesId = dishesId.filter(dishId => dishId !== id) :
+    dishesId = dishesId.concat(id);
+
+    return await db.collection("order").doc(order.id).update({
+        dishesId
+    }).then(() => dishesId)
+    .catch((error) => {
+        console.log(error);
+        return []
+    })
+}
+
+const removeDishFromOrder = async (order:Order, id: string) => {
+    let { dishesId } = order;
+    dishesId = dishesId.filter(dishId => dishId !== id);
+
+    return await db.collection("orders").doc(order.id).update({
+        dishesId
+    }).then(() => {
+        return dishesId
+    })
+    .catch((error) => {
+        console.log(error);
+        return []
+    })
+}
+
 
 export {
     getOrders,
     setDishesToOrders,
     addOrder,
-    removeOrder
+    removeOrder,
+    removeDishFromOrder,
+    addDishToOrder
 }

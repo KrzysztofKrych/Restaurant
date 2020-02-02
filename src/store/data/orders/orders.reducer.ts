@@ -6,7 +6,8 @@ import ActionType, {
     RemoveOrderSuccessAction,
     ChangeOrderStatusSuccessAction,
     SetOrdersSuccessAction,
-    AddDishToOrderAction
+    AddDishToOrderAction,
+    RefreshDishesInOrderAction
 } from "./orders.actions"
 import Order from "../../../api/models/Order";
 
@@ -19,7 +20,7 @@ export const initialOrderState: OrdersState = {
     orders: []
 }
 
-export type OrdersAction = AddOrderSuccessAction | RemoveOrderSuccessAction | ChangeOrderStatusSuccessAction | SetOrdersSuccessAction | AddDishToOrderAction;
+export type OrdersAction = AddOrderSuccessAction | RemoveOrderSuccessAction | ChangeOrderStatusSuccessAction | SetOrdersSuccessAction | AddDishToOrderAction | RefreshDishesInOrderAction;
 
 const ordersReducer: Redux.Reducer<OrdersState, OrdersAction> = (state = initialOrderState, action) => {
     if(ActionType){
@@ -31,7 +32,7 @@ const ordersReducer: Redux.Reducer<OrdersState, OrdersAction> = (state = initial
                 }
             }
             case ActionType.ADD_DISH_TO_ORDER_SUCCESS_ACTION: {
-                const { id, dish } = action.payload;
+                const { id, dish, dishesId } = action.payload;
                 return {
                     ...state,
                     orders: [
@@ -42,6 +43,9 @@ const ordersReducer: Redux.Reducer<OrdersState, OrdersAction> = (state = initial
                                     order.dishes.splice(index,1)
                                 }else{
                                     order.dishes.push(dish)
+                                }
+                                if(dishesId){
+                                    order.dishesId = [...dishesId];
                                 }
                             }
                             return dish;
@@ -71,6 +75,20 @@ const ordersReducer: Redux.Reducer<OrdersState, OrdersAction> = (state = initial
                        return order;
                    })]
                }
+           }
+           case ActionType.REFRESH_DISHES_IN_ORDER_SUCCESS_ACTION: {
+            const {  orderId, dishesId } = action.payload;
+            return {
+                ...state,
+                orders: state.orders.filter(order => {
+                    if(order.id === orderId){
+                        const dishes = order.dishes.filter(dish => dishesId.includes(dish.id))
+                        order.dishesId = [...dishesId];
+                        order.dishes = [...dishes];
+                    }
+                    return order;
+                })
+            }
            }
             default: {
                 return state
