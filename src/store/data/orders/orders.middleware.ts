@@ -3,7 +3,7 @@ import ActionType from "./orders.actions";
 import { store } from "../..";
 import Order from "../../../api/models/Order";
 import OrderStatus from "../../../api/models/OrderStatus";
-import { getOrders, removeOrder, addOrder, removeDishesFromOrder, addDishToOrder } from "../../repositories/ordersRepository";
+import { getOrders, removeOrder, addOrder, removeDishFromOrder, addDishToOrder } from "../../repositories/ordersRepository";
 import Dish from "../../../api/models/Dish";
 
 export const getOrdersActionInit = async () => {
@@ -12,9 +12,13 @@ export const getOrdersActionInit = async () => {
 }
 
 export const addOrderSuccessAction = async (order: Order) => {
-    const addedId = await addOrder(order);
-    if(addedId){
-        order.id = addedId;
+    const addedOrder = await addOrder(order);
+    if(addedOrder.id && addedOrder.dishesId.length){
+        const { id, dishesId } = addedOrder
+        order = {
+            ...order,
+            dishesId, id
+        }
         store.dispatch({ type: ActionType.ADD_ORDER_SUCCESS_ACTION, payload: { order } })
     }
 }
@@ -44,7 +48,7 @@ export const refreshDishesInOrder = (id: string) => {
     const {orders: { orders }} = store.getState();
     orders.forEach(async (order) =>  {
         if(order.dishesId.includes(id)){
-            const dishesId = await removeDishesFromOrder(order, id);
+            const dishesId = await removeDishFromOrder(order, id);
             const {id: orderId} = order;
             store.dispatch({ type: ActionType.REFRESH_DISHES_IN_ORDER_SUCCESS_ACTION, payload: { orderId, dishesId }})
         }

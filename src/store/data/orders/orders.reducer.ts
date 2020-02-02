@@ -82,7 +82,7 @@ const ordersReducer: Redux.Reducer<OrdersState, OrdersAction> = (state = initial
                 ...state,
                 orders: state.orders.filter(order => {
                     if(order.id === orderId){
-                        const dishes = order.dishes.filter(dish => dishesId.includes(order.id))
+                        const dishes = order.dishes.filter(dish => dishesId.includes(dish.id))
                         order.dishesId = [...dishesId];
                         order.dishes = [...dishes];
                     }
