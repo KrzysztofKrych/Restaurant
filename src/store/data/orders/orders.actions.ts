@@ -7,7 +7,8 @@ enum ActionType {
     REMOVE_ORDER_SUCCESS_ACTION = "REMOVE_ORDER_SUCCESS_ACTION",
     CHANGE_ORDER_STATUS_SUCCESS_ACTION = "CHANGE_ORDER_STATUS_SUCCESS_ACTION",
     SET_ORDERS_SUCCESS_ACTION = "SET_ORDERS_SUCCESS_ACTION",
-    ADD_DISH_TO_ORDER_SUCCESS_ACTION = "ADD_DISH_TO_ORDER_SUCCESS_ACTION"
+    ADD_DISH_TO_ORDER_SUCCESS_ACTION = "ADD_DISH_TO_ORDER_SUCCESS_ACTION",
+    REFRESH_DISHES_IN_ORDER_SUCCESS_ACTION = "REFRESH_DISHES_IN_ORDER_SUCCESS_ACTION"
 }
 
 export class SetOrdersSuccessAction implements Redux.Action {
@@ -20,10 +21,10 @@ export class SetOrdersSuccessAction implements Redux.Action {
 
 export class AddDishToOrderAction implements Redux.Action {
     public readonly type = ActionType.ADD_DISH_TO_ORDER_SUCCESS_ACTION;
-    public readonly payload: { id: string, dish: Dish }
+    public readonly payload: { id: string, dish: Dish, dishesId?: string[] }
 
-    constructor(id: string, dish: Dish){
-        this.payload = { id, dish }
+    constructor(id: string, dish: Dish, dishesId? : string[]){
+        this.payload = { id, dish, dishesId }
     }
 }
 
@@ -48,5 +49,15 @@ export class ChangeOrderStatusSuccessAction implements Redux.Action {
         this.payload = { id, status }
     }
 }
+
+export class RefreshDishesInOrderAction implements Redux.Action {
+    public readonly type = ActionType.REFRESH_DISHES_IN_ORDER_SUCCESS_ACTION;
+    public readonly payload: { orderId: string, dishesId: string[] }
+
+    constructor(orderId: string, dishesId: string[]){
+        this.payload = { orderId, dishesId }
+    }
+}
+
 
 export default ActionType;

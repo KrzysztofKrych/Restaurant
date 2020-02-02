@@ -5,6 +5,7 @@ import Dish from "../../../api/models/Dish";
 import Ingredient from "../../../api/models/Ingredient";
 import { getDishes, addDish, removeDish, addIngredientToDish, removeIngredientFromDish } from "../../repositories/dishesRepository";
 import { setDishesToOrders } from "../../repositories/ordersRepository";
+import { refreshDishesInOrder } from "../orders/orders.middleware";
 
 
 export const getDishesActionInit = async () => {
@@ -25,6 +26,7 @@ export const addDishActionSuccess = async (dish: Dish) => {
 export const removeDishActionSuccess = async (id: string) => {
     const removed = await removeDish(id);
     if(removed){
+        refreshDishesInOrder(id);
         store.dispatch({ type: ActionType.REMOVE_DISH_SUCCESS_ACTION, payload: { id } })
     }
 }

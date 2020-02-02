@@ -69,6 +69,7 @@ const addIngredientToDish = async (dish:Dish, id: string) => {
         return []
     })
 }
+
 const removeIngredientFromDish = async (dish:Dish, id: string) => {
     let { ingredientsId } = dish;
     ingredientsId = ingredientsId.filter(ingredientId => ingredientId !== id);
