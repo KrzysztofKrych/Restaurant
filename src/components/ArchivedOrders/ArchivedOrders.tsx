@@ -14,10 +14,11 @@ export interface Props {
 const ArchivedOrders = ({orders}: Props) => {
     return (
         <Fragment>
+            {orders.length && orders.some(order => order.status === OrderStatus.ARCHIVED) && 
             <div className="archived-order head">
                 <div className="table-number">table number</div>
                 <div className="table-number">dishes</div>
-            </div>
+            </div>}
             {orders.map((order, index) => 
             order.status === OrderStatus.ARCHIVED &&
                 <div key={index} className="archived-order">

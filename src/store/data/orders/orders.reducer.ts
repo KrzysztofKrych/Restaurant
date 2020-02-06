@@ -77,7 +77,7 @@ const ordersReducer: Redux.Reducer<OrdersState, OrdersAction> = (state = initial
                }
            }
            case ActionType.REFRESH_DISHES_IN_ORDER_SUCCESS_ACTION: {
-            const {  orderId, dishesId } = action.payload;
+            const { orderId, dishesId } = action.payload;
             return {
                 ...state,
                 orders: state.orders.filter(order => {
