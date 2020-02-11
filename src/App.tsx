@@ -3,8 +3,6 @@ import './App.css';
 import Menu from "./components/Menu/Menu";
 import Wrapper from "./components/Wrapper/Wrapper";
 import Content from "./components/Content/Content";
-// import Login from "./components/Login/Login";
-// import { loginAction }  from "./store/data/user/user.actions";
 import { RootState } from './store/rootReducer';
 import { connect } from "react-redux";
 import { UserState } from './store/data/user/user.reducer';

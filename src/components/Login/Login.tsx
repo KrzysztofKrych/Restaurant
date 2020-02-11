@@ -34,6 +34,7 @@ const Login = () => {
             <FlexDiv>
                 <label>Password</label>
                 <Input 
+                type="password"
                 onChange={(event: ChangeEvent<HTMLInputElement>) => handleAuth(auth => auth.password = event.target.value)}  
                 size="medium" 
                 placeholder="password" />
