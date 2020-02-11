@@ -8,6 +8,8 @@ import { connect } from "react-redux";
 import { UserState } from './store/data/user/user.reducer';
 import NotificationBar from './components/Content/NotificationBar/NotificationBar';
 import Login from './components/Login/Login';
+import AuthStatus from './api/AuthStatus';
+import Spinner from './components/Elements/Spinner/Spinner';
 
 export interface Props {
   activeUser: UserState
@@ -24,8 +26,9 @@ const App = ({activeUser}: Props) => {
   return (
       <div className="App">
         <NotificationBar />
-        {!activeUser.auth ? <Login /> : 
-        <Wrapper>
+        {activeUser.auth === AuthStatus.UNLOGIN && <Login />}
+        {activeUser.auth === AuthStatus.WORKING && <div className="spinner-container"><Spinner /></div>}
+        {activeUser.auth === AuthStatus.LOGIN && <Wrapper>
           <Menu onClick={handleMenuSwitch}/>
           <Content show={selectedMenuItem} />
         </Wrapper> } 

@@ -2,24 +2,28 @@ import Redux from "redux";
 
 import ActionType, {
     UserLoginSuccessAction,
-    UserSignOutSuccessAction
+    UserSignOutSuccessAction,
+    UserLoginInitAction
 } from "./user.actions"
+
 import User from "../../../api/models/User";
+import AuthStatus from "../../../api/AuthStatus";
+
 
 export interface UserState{
     user: User
-    auth: boolean
+    auth: AuthStatus
 }
 
 export const initialUserState: UserState = {
-    auth: false,
+    auth: AuthStatus.UNLOGIN,
     user: {
         email: "",
         id: ""
     }
 }
 
-export type UserAction = UserLoginSuccessAction | UserSignOutSuccessAction;
+export type UserAction = UserLoginSuccessAction | UserSignOutSuccessAction | UserLoginInitAction;
 
 const userReducer: Redux.Reducer<UserState, UserAction> = (state = initialUserState, action: UserAction) => {
     if(ActionType){
@@ -33,7 +37,18 @@ const userReducer: Redux.Reducer<UserState, UserAction> = (state = initialUserSt
                         email: email,
                         id: String(id)
                     },
-                    auth: true
+                    auth: AuthStatus.LOGIN
+                }
+            }
+            case ActionType.USER_LOGIN_INIT_ACTION: {
+                return { 
+                    ...state,
+                    user: {
+                        ...state.user,
+                        email: "",
+                        id: ""
+                    }, 
+                    auth: AuthStatus.WORKING
                 }
             }
             case ActionType.USER_SIGNOUT_SUCCESS_ACTION: {
@@ -44,7 +59,7 @@ const userReducer: Redux.Reducer<UserState, UserAction> = (state = initialUserSt
                         email: "",
                         id: ""
                     },
-                    auth: false
+                    auth:  AuthStatus.UNLOGIN
                 }
             }
             default: {

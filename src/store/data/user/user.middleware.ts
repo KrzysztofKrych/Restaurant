@@ -5,11 +5,16 @@ import Auth from "../../../api/models/Auth";
 import { getByQuery } from "../../../config/firebaseReq";
 
 export const loginActionInit = (user: Auth) => {
+    loginActionStarted();
     fire.auth().signInWithEmailAndPassword(user.login, user.password).then((res) => {
         loginActionSuccess(res.user && res.user.email || "")
     }).catch((e)=>{
         console.log("error", e)
     })
+}
+
+export const loginActionStarted = () => {
+    store.dispatch({type: ActionType.USER_LOGIN_INIT_ACTION});
 }
 
 export const signoutActionInit = () => {
