@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from "react-redux";
 import { store } from "./store/index";
 import { fire }  from './config/firebaseConfig';
-import { loginActionSuccess } from './store/data/user/user.middleware';
+import { loginActionSuccess, loginActionStarted } from './store/data/user/user.middleware';
 import { getDishesActionInit } from './store/data/dishes/dishes.middleware';
 import { getIngredientsActionInit } from './store/data/ingredients/ingredients.middleware';
 import { getOrdersActionInit } from './store/data/orders/orders.middleware';
@@ -20,7 +20,7 @@ const cb = async (user: firebase.User | null) => {
         await getIngredientsActionInit();
     } 
 }
-
+loginActionStarted();
 fire.auth().onAuthStateChanged(cb);
 
 
