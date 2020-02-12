@@ -18,6 +18,15 @@
 .button.danger:hover{
     background-color: #c03340;
 }
+.button.info{
+    background-color: #2196F3;
+    border: 1px solid #2196F3;
+}
+
+.button.disabled{
+    pointer-events: none;
+    opacity: .5;
+}
 
 .button.responsive{
     width: 100%;
