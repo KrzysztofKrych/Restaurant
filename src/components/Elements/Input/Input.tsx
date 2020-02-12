@@ -19,18 +19,18 @@ export interface Props {
 }
 
 const Input = ({onChange,onBlur, value, style, className, placeholder, size, type = "text", accept, disabled, checked, autoFocus}:Props) => (
-    <input 
-    className={`${className} input ${size}`}
-    onChange={onChange} 
-    value={value}
-    style={style}
-    placeholder={placeholder}
-    type={type}
-    disabled={disabled}
-    accept={accept}
-    checked={checked}
-    onBlur={onBlur}
-    autoFocus={autoFocus}
+    <input
+        className={`${className} input ${size}`}
+        onChange={onChange} 
+        value={value}
+        style={style}
+        placeholder={placeholder}
+        type={type}
+        disabled={disabled}
+        accept={accept}
+        checked={checked}
+        onBlur={onBlur}
+        autoFocus={autoFocus}
      />
 )
 
