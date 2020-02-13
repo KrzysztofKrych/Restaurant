@@ -28,9 +28,11 @@ export const removeOrderSuccessAction = async (id: string) => {
         store.dispatch({ type: ActionType.REMOVE_ORDER_SUCCESS_ACTION, payload: { id } })
     }
 }
-export const changeOrderStatusSuccessAction = (id: string, status: OrderStatus) => {
-    updateOrderStatus(id, status);
-    store.dispatch({ type: ActionType.CHANGE_ORDER_STATUS_SUCCESS_ACTION, payload: { id, status } })
+export const changeOrderStatusSuccessAction = async (id: string, status: OrderStatus) => {
+    const updated = await updateOrderStatus(id, status);
+    if(updated){
+        store.dispatch({ type: ActionType.CHANGE_ORDER_STATUS_SUCCESS_ACTION, payload: { id, status } })
+    }
 }
 
 export const addDishToOrderActionSuccess = (id: string, dish:Dish) => {
