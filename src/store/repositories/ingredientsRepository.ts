@@ -10,6 +10,7 @@ const getIngredients = async (): Promise<Ingredient[]> => {
             return {
                 id: doc.id,
                 name: data.name,
+                avatar: data.avatar,
                 userId: getUserId(),
             }
         }
@@ -25,9 +26,20 @@ const addIngredient = async (ingredient: Ingredient) => {
         return ""
     })
 }
+
 const removeIngredient = async (id: string) => {
     return await db.collection("ingredients").doc(id).delete().then(() => true
     ).catch((error) => {
+        console.log(error);
+        return false
+    })
+}
+
+const updateAvatar = async (id: string, avatar: string) => {
+    return await db.collection("ingredients").doc(id).update({
+        avatar
+    }).then(() => true)
+    .catch((error) => {
         console.log(error);
         return false
     })
@@ -37,5 +49,6 @@ const removeIngredient = async (id: string) => {
 export {
     getIngredients,
     addIngredient,
-    removeIngredient
+    removeIngredient,
+    updateAvatar
 }

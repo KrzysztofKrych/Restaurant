@@ -2,7 +2,7 @@
 import { store } from "../../index";
 import ActionType from "./ingredients.actions";
 import Ingredient from "../../../api/models/Ingredient";
-import { getIngredients, addIngredient, removeIngredient } from "../../repositories/ingredientsRepository";
+import { getIngredients, addIngredient, removeIngredient, updateAvatar } from "../../repositories/ingredientsRepository";
 import { setIngredientsToDishes } from "../../repositories/dishesRepository";
 import { refreshIngredientsInDishes } from "../dishes/dishes.middleware";
 
@@ -34,6 +34,9 @@ export const deleteIngredientNameActionSuccess = async (id: string) => {
     }
 }
 
-export const addAvatarToIngredientActionSuccess = (avatar: string, id:string) => {
-    store.dispatch({ type: ActionType.ADD_AVATAR_TO_INGREDIENT_SUCCESS_ACTION, payload: { avatar,id } })
+export const addAvatarToIngredientActionSuccess = async (avatar: string, id:string) => {
+    const updated = await updateAvatar(id, avatar);
+    if(updated){
+        store.dispatch({ type: ActionType.ADD_AVATAR_TO_INGREDIENT_SUCCESS_ACTION, payload: { avatar,id } })
+    }
 }

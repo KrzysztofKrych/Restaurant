@@ -85,6 +85,11 @@ const removeDishFromOrder = async (order:Order, id: string) => {
 const updateOrderStatus = async (id:string, status: OrderStatus) => {
     return await db.collection("orders").doc(id).update({
         status
+    }).then(response => {
+        return true;
+    }).catch(error => {
+        console.log(error);
+        return false;
     })
 }
 
