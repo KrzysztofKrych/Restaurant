@@ -9,6 +9,7 @@ import { removeOrderSuccessAction, changeOrderStatusSuccessAction } from '../../
 import RadioInput from '../Elements/RadioInput/RadioInput';
 import OrderStatus from '../../api/models/OrderStatus';
 import { toggleNotificationBarAction } from '../../store/data/notification/notification.middleware';
+import { getNextOrderStatus } from '../../store/repositories/ordersRepository';
 
 export interface Props{
     orders: Order[]
@@ -36,23 +37,6 @@ const OrdersList = ({orders}: Props) => {
     const handleOrderStatus = ({id, status}: Order) => {
         changeOrderStatusSuccessAction(id, getNextOrderStatus(status));
         toggleNotificationBarAction(`Order status change to ${getNextOrderStatus(status)}`, 'success')
-    }
-
-    const getNextOrderStatus = (status: OrderStatus) => {
-        switch(status){
-            case OrderStatus.ORDERED: {
-                return OrderStatus.ISSUED
-            }
-            case OrderStatus.ISSUED: {
-                return OrderStatus.PAID
-            }
-            case OrderStatus.PAID: {
-                return OrderStatus.ARCHIVED
-            }
-            default: {
-                return OrderStatus.ORDERED
-            }
-        }
     }
 
     return (

@@ -3,6 +3,7 @@ import Order from "../../api/models/Order";
 import Dish from "../../api/models/Dish";
 import { addDishToOrderActionSuccess } from "../data/orders/orders.middleware";
 import { getUserId } from "../../helpers/helpers";
+import OrderStatus from "../../api/models/OrderStatus";
 
 const getOrders = async (): Promise<Order[]> => {
     const q = db.collection("orders").where('userId', "==", getUserId())
@@ -57,7 +58,7 @@ const addDishToOrder = async (order:Order, id: string) => {
     dishesId = dishesId.filter(dishId => dishId !== id) :
     dishesId = dishesId.concat(id);
 
-    return await db.collection("order").doc(order.id).update({
+    return await db.collection("orders").doc(order.id).update({
         dishesId
     }).then(() => dishesId)
     .catch((error) => {
@@ -81,6 +82,28 @@ const removeDishFromOrder = async (order:Order, id: string) => {
     })
 }
 
+const updateOrderStatus = async (id:string, status: OrderStatus) => {
+    return await db.collection("orders").doc(id).update({
+        status
+    })
+}
+
+const getNextOrderStatus = (status: OrderStatus) => {
+    switch(status){
+        case OrderStatus.ORDERED: {
+            return OrderStatus.ISSUED
+        }
+        case OrderStatus.ISSUED: {
+            return OrderStatus.PAID
+        }
+        case OrderStatus.PAID: {
+            return OrderStatus.ARCHIVED
+        }
+        default: {
+            return OrderStatus.ORDERED
+        }
+    }
+}
 
 export {
     getOrders,
@@ -88,5 +111,7 @@ export {
     addOrder,
     removeOrder,
     removeDishFromOrder,
-    addDishToOrder
+    addDishToOrder,
+    updateOrderStatus,
+    getNextOrderStatus
 }
