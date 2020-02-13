@@ -3,7 +3,7 @@ import ActionType from "./orders.actions";
 import { store } from "../..";
 import Order from "../../../api/models/Order";
 import OrderStatus from "../../../api/models/OrderStatus";
-import { getOrders, removeOrder, addOrder, removeDishFromOrder, addDishToOrder } from "../../repositories/ordersRepository";
+import { getOrders, removeOrder, addOrder, removeDishFromOrder, addDishToOrder, updateOrderStatus } from "../../repositories/ordersRepository";
 import Dish from "../../../api/models/Dish";
 
 export const getOrdersActionInit = async () => {
@@ -29,6 +29,7 @@ export const removeOrderSuccessAction = async (id: string) => {
     }
 }
 export const changeOrderStatusSuccessAction = (id: string, status: OrderStatus) => {
+    updateOrderStatus(id, status);
     store.dispatch({ type: ActionType.CHANGE_ORDER_STATUS_SUCCESS_ACTION, payload: { id, status } })
 }
 
